@@ -1,4 +1,4 @@
-import { Pagination } from "../../../shared/pagination/model/pagination"
+import { Pagination } from "../../../shared/lib/pagination/model/pagination"
 import { Comment } from "../model/comment"
 
 export const getComments = async (postId: string): Promise<Pagination<Comment, "comments">> => {

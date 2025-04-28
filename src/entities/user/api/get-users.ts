@@ -1,4 +1,4 @@
-import { Pagination } from "../../../shared/pagination/model/pagination"
+import { Pagination } from "../../../shared/lib/pagination/model/pagination"
 import { User } from "../model/user"
 
 export const getUsers = async (): Promise<Pagination<User, "users">> => {
