@@ -29,7 +29,7 @@ import { Post } from "../entities/post/model/post"
 import { User } from "../entities/user/model/user"
 import { Comment } from "../entities/comment/model/comment"
 import { Pagination } from "../shared/lib/pagination/model/pagination"
-import { PostWithAuthor } from "../features/post-list/model/post-with-author"
+import { PostWithAuthor } from "../features/post-view/model/post-with-author"
 import { UserDetail } from "../entities/user/model/user-detail"
 
 const PostsManager = () => {
