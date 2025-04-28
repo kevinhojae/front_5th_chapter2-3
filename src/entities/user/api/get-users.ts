@@ -1,7 +1,7 @@
-import { Pagination } from "../../../shared/lib/pagination/model/pagination"
+import { PaginatedResponse } from "../../../shared/lib/utility-types"
 import { User } from "../model/user"
 
-export const getUsers = async (): Promise<Pagination<User, "users">> => {
+export const getUsers = async (): Promise<PaginatedResponse<User, "users">> => {
   const searchParams = new URLSearchParams()
   searchParams.set("limit", "0")
   searchParams.set("select", "username,image")

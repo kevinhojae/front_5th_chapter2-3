@@ -1,4 +1,4 @@
-export type Pagination<T, AccesorKey extends string = "items"> = {
+export type PaginatedResponse<T, AccesorKey extends string = "items"> = {
   [key in AccesorKey]: T[]
 } & {
   total: number

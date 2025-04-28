@@ -28,7 +28,7 @@ import {
 import { Post } from "../entities/post/model/post"
 import { User } from "../entities/user/model/user"
 import { Comment } from "../entities/comment/model/comment"
-import { Pagination } from "../shared/lib/pagination/model/pagination"
+import { PaginatedResponse } from "../shared/lib/utility-types"
 import { PostWithAuthor } from "../features/post-view/model/post-with-author"
 import { UserDetail } from "../entities/user/model/user-detail"
 
@@ -105,17 +105,17 @@ const PostsManager = () => {
   // 게시물 가져오기
   const fetchPosts = () => {
     setLoading(true)
-    let postsData: Pagination<Post, "posts">
+    let postsData: PaginatedResponse<Post, "posts">
     let usersData: User[]
 
     fetch(`/api/posts?limit=${limit}&skip=${skip}`)
       .then((response) => response.json())
-      .then((data: Pagination<Post, "posts">) => {
+      .then((data: PaginatedResponse<Post, "posts">) => {
         postsData = data
         return fetch("/api/users?limit=0&select=username,image")
       })
       .then((response) => response.json())
-      .then((users: Pagination<User, "users">) => {
+      .then((users: PaginatedResponse<User, "users">) => {
         usersData = users.users
         const postsWithUsers: PostWithAuthor[] = postsData.posts.map((post) => ({
           ...post,
