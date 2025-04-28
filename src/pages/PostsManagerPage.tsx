@@ -31,29 +31,45 @@ const PostsManager = () => {
   const location = useLocation()
   const queryParams = new URLSearchParams(location.search)
 
-  // 상태 관리
+  // post (게시물) 관련 상태
   const [posts, setPosts] = useState([])
-  const [total, setTotal] = useState(0)
-  const [skip, setSkip] = useState(parseInt(queryParams.get("skip") || "0"))
-  const [limit, setLimit] = useState(parseInt(queryParams.get("limit") || "10"))
-  const [searchQuery, setSearchQuery] = useState(queryParams.get("search") || "")
   const [selectedPost, setSelectedPost] = useState(null)
-  const [sortBy, setSortBy] = useState(queryParams.get("sortBy") || "")
-  const [sortOrder, setSortOrder] = useState(queryParams.get("sortOrder") || "asc")
+  const [newPost, setNewPost] = useState({ title: "", body: "", userId: 1 })
+
+  // post (게시물) 관련 모달 상태
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [showEditDialog, setShowEditDialog] = useState(false)
-  const [newPost, setNewPost] = useState({ title: "", body: "", userId: 1 })
-  const [loading, setLoading] = useState(false)
+  const [showPostDetailDialog, setShowPostDetailDialog] = useState(false)
+
+  // tag (태그) 관련 상태
   const [tags, setTags] = useState([])
   const [selectedTag, setSelectedTag] = useState(queryParams.get("tag") || "")
+
+  // comment (댓글) 관련 상태
   const [comments, setComments] = useState({})
   const [selectedComment, setSelectedComment] = useState(null)
   const [newComment, setNewComment] = useState({ body: "", postId: null, userId: 1 })
+
+  // comment (댓글) 관련 모달 상태
   const [showAddCommentDialog, setShowAddCommentDialog] = useState(false)
   const [showEditCommentDialog, setShowEditCommentDialog] = useState(false)
-  const [showPostDetailDialog, setShowPostDetailDialog] = useState(false)
-  const [showUserModal, setShowUserModal] = useState(false)
+
+  // user (사용자) 관련 상태
   const [selectedUser, setSelectedUser] = useState(null)
+  const [showUserModal, setShowUserModal] = useState(false)
+
+  // 페이지네이션 관련 상태
+  const [total, setTotal] = useState(0)
+  const [skip, setSkip] = useState(parseInt(queryParams.get("skip") || "0"))
+  const [limit, setLimit] = useState(parseInt(queryParams.get("limit") || "10"))
+
+  // 검색 관련 상태
+  const [searchQuery, setSearchQuery] = useState(queryParams.get("search") || "")
+  const [sortBy, setSortBy] = useState(queryParams.get("sortBy") || "")
+  const [sortOrder, setSortOrder] = useState(queryParams.get("sortOrder") || "asc")
+
+  // 로딩 상태
+  const [loading, setLoading] = useState(false)
 
   // URL 업데이트 함수
   const updateURL = () => {
@@ -268,7 +284,6 @@ const PostsManager = () => {
   // 댓글 좋아요
   const likeComment = async (id, postId) => {
     try {
-
       const response = await fetch(`/api/comments/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -277,7 +292,9 @@ const PostsManager = () => {
       const data = await response.json()
       setComments((prev) => ({
         ...prev,
-        [postId]: prev[postId].map((comment) => (comment.id === data.id ? {...data, likes: comment.likes + 1} : comment)),
+        [postId]: prev[postId].map((comment) =>
+          comment.id === data.id ? { ...data, likes: comment.likes + 1 } : comment,
+        ),
       }))
     } catch (error) {
       console.error("댓글 좋아요 오류:", error)
