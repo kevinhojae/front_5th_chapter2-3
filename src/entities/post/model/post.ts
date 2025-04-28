@@ -3,13 +3,11 @@ export type Reactions = {
   dislikes: number
 }
 
-export type Tag = string
-
 export type Post = {
   id: number
   title: string
   body: string
-  tags: Tag[]
+  tags: string[]
   reactions: Reactions
   views: number
   userId: number
