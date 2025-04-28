@@ -6,11 +6,11 @@ export type Reactions = {
 export type Tag = string
 
 export type Post = {
-  id: string
+  id: number
   title: string
   body: string
   tags: Tag[]
   reactions: Reactions
   views: number
-  userId: string
+  userId: number
 }
