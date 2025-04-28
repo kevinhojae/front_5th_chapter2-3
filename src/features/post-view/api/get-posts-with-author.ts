@@ -7,5 +7,5 @@ export const getPostsWithAuthor = async (limit: number, skip: number): Promise<P
   const { posts } = await getPosts(limit, skip)
   const { users } = await getUsers()
 
-  return adaptPostWithAuthor(posts, users)
+  return posts.map((post) => adaptPostWithAuthor(post, users))
 }

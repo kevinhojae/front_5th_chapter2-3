@@ -7,5 +7,5 @@ export const getPostsWithAuthorByTag = async (tag: string): Promise<PostWithAuth
   const { posts } = await getPostsByTag(tag)
   const { users } = await getUsers()
 
-  return adaptPostWithAuthor(posts, users)
+  return posts.map((post) => adaptPostWithAuthor(post, users))
 }
