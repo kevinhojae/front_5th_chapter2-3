@@ -33,6 +33,7 @@ type PostContextType = {
   updateURL: () => void
   fetchPostsByTag: (tag: string) => Promise<void>
   fetchPostsBySearch: () => Promise<void>
+  highlightText: (text: string, highlight: string) => React.ReactNode
 }
 
 export const PostContext = createContext<PostContextType>({
@@ -59,6 +60,7 @@ export const PostContext = createContext<PostContextType>({
   updateURL: () => {},
   fetchPostsBySearch: () => Promise.resolve(),
   fetchPostsByTag: () => Promise.resolve(),
+  highlightText: () => null,
 })
 
 export const PostProvider = ({ children }: { children: React.ReactNode }) => {
@@ -83,6 +85,21 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     if (sortOrder) params.set("sortOrder", sortOrder)
     if (selectedTag) params.set("tag", selectedTag)
     navigate(`?${params.toString()}`)
+  }
+
+  // 하이라이트 함수 추가
+  const highlightText = (text: string, highlight: string) => {
+    if (!text) return null
+    if (!highlight.trim()) {
+      return <span>{text}</span>
+    }
+    const regex = new RegExp(`(${highlight})`, "gi")
+    const parts = text.split(regex)
+    return (
+      <span>
+        {parts.map((part, i) => (regex.test(part) ? <mark key={i}>{part}</mark> : <span key={i}>{part}</span>))}
+      </span>
+    )
   }
 
   const fetchPostsBySearch = async () => {
@@ -176,6 +193,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading,
     tags,
     setTags,
+    highlightText,
     searchQuery,
     setSearchQuery,
     sortBy,
