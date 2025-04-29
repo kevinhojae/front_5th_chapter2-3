@@ -4,6 +4,7 @@ import Footer from "./widgets/ui/Footer.tsx"
 import PostsManagerPage from "./pages/PostsManagerPage.tsx"
 import { PostProvider } from "./features/post-view/lib/PostProvider.tsx"
 import { PaginationProvider } from "./features/post-view/lib/PaginationProvider.tsx"
+import { PostFilterProvider } from "./features/post-view/lib/FilterProvider.tsx"
 
 const App = () => {
   return (
@@ -12,9 +13,11 @@ const App = () => {
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
           <PaginationProvider>
-            <PostProvider>
-              <PostsManagerPage />
-            </PostProvider>
+            <PostFilterProvider>
+              <PostProvider>
+                <PostsManagerPage />
+              </PostProvider>
+            </PostFilterProvider>
           </PaginationProvider>
         </main>
         <Footer />
