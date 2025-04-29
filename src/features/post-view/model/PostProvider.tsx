@@ -4,7 +4,7 @@ import { usePagination } from "./PaginationProvider"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
 import { fetchTags } from "../../../entities/post/api/fetchTags"
-import { usePostFilters } from "./FilterProvider"
+import { usePostFilters } from "./PostFilterProvider"
 
 type PostContextType = {
   posts: PostWithAuthor[]

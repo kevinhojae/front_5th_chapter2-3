@@ -3,7 +3,7 @@ import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { usePagination } from "./PaginationProvider"
 import { usePosts } from "./PostProvider"
-import { usePostFilters } from "./FilterProvider"
+import { usePostFilters } from "./PostFilterProvider"
 
 export const usePostSearchInput = () => {
   const location = useLocation()

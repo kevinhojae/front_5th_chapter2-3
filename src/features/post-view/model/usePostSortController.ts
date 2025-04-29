@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { usePostFilters } from "./FilterProvider"
+import { usePostFilters } from "./PostFilterProvider"
 
 export const usePostSortController = () => {
   const location = useLocation()

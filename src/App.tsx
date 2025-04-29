@@ -4,7 +4,7 @@ import Footer from "./widgets/ui/Footer.tsx"
 import PostsManagerPage from "./pages/PostsManagerPage.tsx"
 import { PostProvider } from "./features/post-view/model/PostProvider.tsx"
 import { PaginationProvider } from "./features/post-view/model/PaginationProvider.tsx"
-import { PostFilterProvider } from "./features/post-view/model/FilterProvider.tsx"
+import { PostFilterProvider } from "./features/post-view/model/PostFilterProvider.tsx"
 
 const App = () => {
   return (
