@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Edit2, MessageSquare, Plus, Search, ThumbsDown, ThumbsUp, Trash2 } from "lucide-react"
+import { Edit2, MessageSquare, Plus, ThumbsDown, ThumbsUp, Trash2 } from "lucide-react"
 import {
   Button,
   Card,
@@ -11,11 +11,6 @@ import {
   DialogHeader,
   DialogTitle,
   Input,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   Table,
   TableBody,
   TableCell,
@@ -28,8 +23,14 @@ import { Post } from "../entities/post/model/post"
 import { User } from "../entities/user/model/user"
 import { Comment } from "../entities/comment/model/comment"
 import { UserDetail } from "../entities/user/model/userDetail"
-import { usePosts } from "../features/post-view/lib/PostProvider"
+import { usePosts } from "../features/post-view/model/PostProvider"
 import { TablePaginator } from "../features/post-view/ui/TablePaginator"
+import { PostSearchInput } from "../features/post-view/ui/PostSearchInput"
+import { usePostFilters } from "../features/post-view/model/FilterProvider"
+import { PostTagSelector } from "../features/post-view/ui/PostTagSelector"
+import { PostTag } from "../features/post-view/ui/PostTag"
+import { PostSortController } from "../features/post-view/ui/PostSortController"
+import { HighlightedText } from "../features/post-view/ui/HighlightedText"
 
 const PostsManager = () => {
   // post (게시물) 관련 상태
@@ -67,24 +68,8 @@ const PostsManager = () => {
   const [selectedUser, setSelectedUser] = useState<UserDetail | null>(null)
   const [showUserModal, setShowUserModal] = useState(false)
 
-  const {
-    posts,
-    setPosts,
-    loading,
-    updateURL,
-    fetchPostsBySearch,
-    fetchPostsByTag,
-    tags,
-    searchQuery,
-    setSearchQuery,
-    sortBy,
-    setSortBy,
-    sortOrder,
-    setSortOrder,
-    selectedTag,
-    setSelectedTag,
-    highlightText,
-  } = usePosts()
+  const { posts, setPosts, loading } = usePosts()
+  const { searchQuery, selectedTag } = usePostFilters()
 
   // 게시물 추가
   const addPost = async () => {
@@ -254,25 +239,11 @@ const PostsManager = () => {
             <TableCell>{post.id}</TableCell>
             <TableCell>
               <div className="space-y-1">
-                <div>{highlightText(post.title, searchQuery)}</div>
-
+                <div>
+                  <HighlightedText text={post.title} highlight={searchQuery} />
+                </div>
                 <div className="flex flex-wrap gap-1">
-                  {post.tags?.map((tag) => (
-                    <span
-                      key={tag}
-                      className={`px-1 text-[9px] font-semibold rounded-[4px] cursor-pointer ${
-                        selectedTag === tag
-                          ? "text-white bg-blue-500 hover:bg-blue-600"
-                          : "text-blue-800 bg-blue-100 hover:bg-blue-200"
-                      }`}
-                      onClick={() => {
-                        setSelectedTag(tag)
-                        updateURL()
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {post.tags?.map((tag) => <PostTag key={tag} tag={tag} selectedTag={selectedTag} />)}
                 </div>
               </div>
             </TableCell>
@@ -337,7 +308,9 @@ const PostsManager = () => {
           <div key={comment.id} className="flex items-center justify-between text-sm border-b pb-1">
             <div className="flex items-center space-x-2 overflow-hidden">
               <span className="font-medium truncate">{comment.user.username}:</span>
-              <span className="truncate">{highlightText(comment.body, searchQuery)}</span>
+              <span className="truncate">
+                <HighlightedText text={comment.body} highlight={searchQuery} />
+              </span>
             </div>
             <div className="flex items-center space-x-1">
               <Button variant="ghost" size="sm" onClick={() => likeComment(comment.id, postId)}>
@@ -380,57 +353,10 @@ const PostsManager = () => {
           {/* 검색 및 필터 컨트롤 */}
           <div className="flex gap-4">
             <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="게시물 검색..."
-                  className="pl-8"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && fetchPostsBySearch()}
-                />
-              </div>
+              <PostSearchInput />
             </div>
-            <Select
-              value={selectedTag || "all"}
-              onValueChange={(value) => {
-                setSelectedTag(value)
-                fetchPostsByTag(value)
-                updateURL()
-              }}
-            >
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="태그 선택" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">모든 태그</SelectItem>
-                {tags.map((tag) => (
-                  <SelectItem key={tag.url} value={tag.slug}>
-                    {tag.slug}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="정렬 기준" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">없음</SelectItem>
-                <SelectItem value="id">ID</SelectItem>
-                <SelectItem value="title">제목</SelectItem>
-                <SelectItem value="reactions">반응</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={sortOrder} onValueChange={setSortOrder}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="정렬 순서" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="asc">오름차순</SelectItem>
-                <SelectItem value="desc">내림차순</SelectItem>
-              </SelectContent>
-            </Select>
+            <PostTagSelector />
+            <PostSortController />
           </div>
 
           {/* 게시물 테이블 */}
@@ -530,10 +456,14 @@ const PostsManager = () => {
       <Dialog open={showPostDetailDialog} onOpenChange={setShowPostDetailDialog}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
-            <DialogTitle>{highlightText(selectedPost?.title || "", searchQuery)}</DialogTitle>
+            <DialogTitle>
+              <HighlightedText text={selectedPost?.title || ""} highlight={searchQuery} />
+            </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <p>{highlightText(selectedPost?.body || "", searchQuery)}</p>
+            <p>
+              <HighlightedText text={selectedPost?.body || ""} highlight={searchQuery} />
+            </p>
             {renderComments(selectedPost?.id || 0)}
           </div>
         </DialogContent>

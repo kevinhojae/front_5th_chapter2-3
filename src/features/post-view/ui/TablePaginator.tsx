@@ -1,6 +1,6 @@
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../../shared/ui"
 import { Button } from "../../../shared/ui/button"
-import { usePagination } from "../lib/PaginationProvider"
+import { usePagination } from "../model/PaginationProvider"
 
 export function TablePaginator() {
   return (
@@ -15,6 +15,12 @@ export function TablePaginator() {
   )
 }
 
+const LIMIT_OPTIONS = [
+  { value: 10, label: "10" },
+  { value: 20, label: "20" },
+  { value: 30, label: "30" },
+]
+
 function LimitSelector() {
   const { limit, handleLimitChange } = usePagination()
 
@@ -24,9 +30,11 @@ function LimitSelector() {
         <SelectValue placeholder="10" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="10">10</SelectItem>
-        <SelectItem value="20">20</SelectItem>
-        <SelectItem value="30">30</SelectItem>
+        {LIMIT_OPTIONS.map((option) => (
+          <SelectItem key={option.value} value={option.value.toString()}>
+            {option.label}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   )
