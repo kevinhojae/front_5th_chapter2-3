@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 type UsePaginationType = {
   limit: number
@@ -37,20 +39,43 @@ export const PaginationProvider = ({ children }: { children: React.ReactNode }) 
   const [skip, setSkip] = useState(0)
   const [total, setTotal] = useState(0)
 
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const queryParams = new URLSearchParams(location.search)
+
   const isFirstPage = skip === 0
   const isLastPage = skip + limit >= total
 
-  const handleLimitChange = (value: number) => {
-    setLimit(value)
+  const updateURL = (limit: number, skip: number) => {
+    if (limit) queryParams.set("limit", limit.toString())
+    if (skip) queryParams.set("skip", skip.toString())
+    navigate(`?${queryParams.toString()}`)
   }
 
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit)
+    updateURL(newLimit, skip)
+  }
+
+  // TODO: merge to handlePageClick(direction: "previous" | "next")
   const handlePreviousPageClick = () => {
-    setSkip(Math.max(0, skip - limit))
+    const newSkip = Math.max(0, skip - limit)
+    setSkip(newSkip)
+    updateURL(limit, newSkip)
   }
 
   const handleNextPageClick = () => {
-    setSkip(skip + limit)
+    const newSkip = skip + limit
+    setSkip(newSkip)
+    updateURL(limit, newSkip)
   }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    setSkip(parseInt(params.get("skip") || "0"))
+    setLimit(parseInt(params.get("limit") || "10"))
+  }, [location.search])
 
   return (
     <PaginationContext.Provider
