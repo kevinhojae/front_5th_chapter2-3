@@ -1,5 +1,5 @@
 import { PaginatedResponse } from "../../../shared/lib/utility-types"
-import { PostWithAuthor } from "../model/post-with-author"
+import { PostWithAuthor } from "./adaptPostWithAuthor"
 
 export const fetchPostsBySearchQuery = async (
   searchQuery: string,

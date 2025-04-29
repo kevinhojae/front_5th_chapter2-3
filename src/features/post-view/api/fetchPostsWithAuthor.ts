@@ -1,7 +1,7 @@
 import { fetchPosts } from "../../../entities/post/api/fetchPosts"
 import { fetchUsers } from "../../../entities/user/api/fetchUsers"
 import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
-import { PostWithAuthor } from "../model/post-with-author"
+import { PostWithAuthor } from "./adaptPostWithAuthor"
 import { PaginatedResponse } from "../../../shared/lib/utility-types"
 
 export const fetchPostsWithAuthor = async (

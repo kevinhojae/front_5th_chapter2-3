@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { PostWithAuthor } from "./post-with-author"
+import { PostWithAuthor } from "../api/adaptPostWithAuthor"
 import { usePagination } from "./PaginationProvider"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
