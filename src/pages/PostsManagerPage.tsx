@@ -29,6 +29,7 @@ import { User } from "../entities/user/model/user"
 import { Comment } from "../entities/comment/model/comment"
 import { UserDetail } from "../entities/user/model/userDetail"
 import { usePosts } from "../features/post-view/lib/PostProvider"
+import { usePagination } from "../features/post-view/lib/PaginationProvider"
 
 const PostsManager = () => {
   // post (게시물) 관련 상태
@@ -68,13 +69,8 @@ const PostsManager = () => {
 
   const {
     posts,
-    total,
     setPosts,
     loading,
-    limit,
-    skip,
-    setLimit,
-    setSkip,
     updateURL,
     fetchPostsBySearch,
     fetchPostsByTag,
@@ -89,6 +85,8 @@ const PostsManager = () => {
     setSelectedTag,
     highlightText,
   } = usePosts()
+
+  const { limit, skip, total, setLimit, setSkip } = usePagination()
 
   // 게시물 추가
   const addPost = async () => {

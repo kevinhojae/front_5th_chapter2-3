@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { PostWithAuthor } from "../model/post-with-author"
-import { usePagination } from "./usePagination"
+import { usePagination } from "./PaginationProvider"
 import { usePostSearch } from "./usePostSearch"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
@@ -12,12 +12,6 @@ import { useNavigate } from "react-router-dom"
 type PostContextType = {
   posts: PostWithAuthor[]
   setPosts: (posts: PostWithAuthor[]) => void
-  total: number
-  setTotal: (total: number) => void
-  limit: number
-  setLimit: (limit: number) => void
-  skip: number
-  setSkip: (skip: number) => void
   loading: boolean
   setLoading: (loading: boolean) => void
   tags: { url: string; slug: string; name: string }[]
@@ -38,13 +32,7 @@ type PostContextType = {
 
 export const PostContext = createContext<PostContextType>({
   posts: [],
-  total: 0,
   setPosts: () => {},
-  setTotal: () => {},
-  limit: 10,
-  skip: 0,
-  setLimit: () => {},
-  setSkip: () => {},
   loading: false,
   setLoading: () => {},
   tags: [],
@@ -69,7 +57,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [loading, setLoading] = useState(false)
 
-  const { limit, skip, total, setLimit, setSkip, setTotal } = usePagination()
+  const { limit, skip, setLimit, setSkip, setTotal } = usePagination()
   const { searchQuery, setSearchQuery } = usePostSearch()
   const { sortBy, setSortBy, sortOrder, setSortOrder, selectedTag, setSelectedTag } = usePostFilters()
 
@@ -106,7 +94,9 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true)
 
     try {
-      const { posts, total } = searchQuery ? await fetchPostsBySearchQuery(searchQuery) : await fetchPostsWithAuthor(limit, skip)
+      const { posts, total } = searchQuery
+        ? await fetchPostsBySearchQuery(searchQuery)
+        : await fetchPostsWithAuthor(limit, skip)
 
       setPosts(posts)
       setTotal(total)
@@ -182,13 +172,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
 
   const value = {
     posts,
-    total,
     setPosts,
-    setTotal,
-    limit,
-    skip,
-    setLimit,
-    setSkip,
     loading,
     setLoading,
     tags,
