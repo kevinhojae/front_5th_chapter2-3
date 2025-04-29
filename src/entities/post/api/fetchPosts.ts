@@ -1,7 +1,7 @@
 import { PaginatedResponse } from "../../../shared/lib/utility-types"
 import { Post } from "../model/post"
 
-export const getPosts = async (limit: number, skip: number): Promise<PaginatedResponse<Post, "posts">> => {
+export const fetchPosts = async (limit: number, skip: number): Promise<PaginatedResponse<Post, "posts">> => {
   const searchParams = new URLSearchParams()
   searchParams.set("limit", limit.toString())
   searchParams.set("skip", skip.toString())

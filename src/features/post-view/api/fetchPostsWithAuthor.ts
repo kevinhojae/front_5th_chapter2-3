@@ -1,15 +1,15 @@
-import { getPosts } from "../../../entities/post/api/get-posts"
-import { getUsers } from "../../../entities/user/api/get-users"
-import { adaptPostWithAuthor } from "./adapt-posts-with-author"
+import { fetchPosts } from "../../../entities/post/api/fetchPosts"
+import { fetchUsers } from "../../../entities/user/api/fetchUsers"
+import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
 import { PostWithAuthor } from "../model/post-with-author"
 import { PaginatedResponse } from "../../../shared/lib/utility-types"
 
-export const getPostsWithAuthor = async (
+export const fetchPostsWithAuthor = async (
   limit: number,
   skip: number,
 ): Promise<PaginatedResponse<PostWithAuthor, "posts">> => {
-  const data = await getPosts(limit, skip)
-  const { users } = await getUsers()
+  const data = await fetchPosts(limit, skip)
+  const { users } = await fetchUsers()
 
   const postsWithAuthor = data.posts.map((post) => adaptPostWithAuthor(post, users))
 

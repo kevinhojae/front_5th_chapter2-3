@@ -2,11 +2,11 @@ import { createContext, useContext, useEffect, useState } from "react"
 import { PostWithAuthor } from "../model/post-with-author"
 import { usePagination } from "./usePagination"
 import { usePostSearch } from "./usePostSearch"
-import { getPostsWithAuthor } from "../api/get-posts-with-author"
-import { getSearchedPosts } from "../api/get-searched-posts"
+import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
+import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
 import { usePostFilters } from "./usePostFilters"
-import { getPostsWithAuthorByTag } from "../api/get-posts-with-author-by-tag"
-import { getTags } from "../../../entities/post/api/get-tags"
+import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
+import { fetchTags } from "../../../entities/post/api/fetchTags"
 import { useNavigate } from "react-router-dom"
 
 type PostContextType = {
@@ -102,11 +102,11 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     )
   }
 
-  const fetchPostsBySearch = async () => {
+  const getPostsBySearch = async () => {
     setLoading(true)
 
     try {
-      const { posts, total } = searchQuery ? await getSearchedPosts(searchQuery) : await getPostsWithAuthor(limit, skip)
+      const { posts, total } = searchQuery ? await fetchPostsBySearchQuery(searchQuery) : await fetchPostsWithAuthor(limit, skip)
 
       setPosts(posts)
       setTotal(total)
@@ -117,12 +117,12 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  const fetchPostsByTag = async (tag: string) => {
+  const getPostsByTag = async (tag: string) => {
     setLoading(true)
 
     try {
       const { posts, total } =
-        !tag || tag === "all" ? await getPostsWithAuthor(limit, skip) : await getPostsWithAuthorByTag(tag)
+        !tag || tag === "all" ? await fetchPostsWithAuthor(limit, skip) : await fetchPostsWithAuthorByTag(tag)
 
       setPosts(posts)
       setTotal(total)
@@ -133,20 +133,20 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  const fetchTags = async () => {
+  const getTags = async () => {
     try {
-      const data = await getTags()
+      const data = await fetchTags()
       setTags(data)
     } catch (error) {
       console.error("태그 가져오기 오류:", error)
     }
   }
 
-  const fetchPosts = async () => {
+  const getPosts = async () => {
     setLoading(true)
 
     try {
-      const { posts, total } = await getPostsWithAuthor(limit, skip)
+      const { posts, total } = await fetchPostsWithAuthor(limit, skip)
 
       setPosts(posts)
       setTotal(total)
@@ -158,14 +158,14 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   useEffect(() => {
-    fetchTags()
+    getTags()
   }, [])
 
   useEffect(() => {
     if (selectedTag) {
-      fetchPostsByTag(selectedTag)
+      getPostsByTag(selectedTag)
     } else {
-      fetchPosts()
+      getPosts()
     }
     updateURL()
   }, [skip, limit, sortBy, sortOrder, selectedTag])
@@ -203,8 +203,8 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     selectedTag,
     setSelectedTag,
     updateURL,
-    fetchPostsBySearch,
-    fetchPostsByTag,
+    fetchPostsBySearch: getPostsBySearch,
+    fetchPostsByTag: getPostsByTag,
   }
 
   return <PostContext.Provider value={value}>{children}</PostContext.Provider>

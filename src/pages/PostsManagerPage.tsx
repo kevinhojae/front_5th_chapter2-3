@@ -27,7 +27,7 @@ import {
 import { Post } from "../entities/post/model/post"
 import { User } from "../entities/user/model/user"
 import { Comment } from "../entities/comment/model/comment"
-import { UserDetail } from "../entities/user/model/user-detail"
+import { UserDetail } from "../entities/user/model/userDetail"
 import { usePosts } from "../features/post-view/lib/PostProvider"
 
 const PostsManager = () => {
