@@ -18,20 +18,6 @@ export const usePostSearchInput = () => {
   const { setSearchQuery } = usePostFiltersParams()
 
   const handlePostSearch = async ({ query }: z.infer<typeof formSchema>) => {
-    // setLoading(true)
-
-    // try {
-    //   const { posts, total } = query ? await fetchPostsBySearchQuery(query) : await fetchPostsWithAuthor(limit, skip)
-
-    //   setPosts(posts)
-    //   setTotal(total)
-
-    //   setSearchQuery(query)
-    // } catch (error) {
-    //   console.error("게시물 검색 오류:", error)
-    // } finally {
-    //   setLoading(false)
-    // }
     setSearchQuery(query)
   }
 
