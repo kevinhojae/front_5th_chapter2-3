@@ -8,14 +8,14 @@ const formSchema = z.object({
 })
 
 export const usePostSearchForm = () => {
+  const { searchQuery, setSearchQuery } = usePostFiltersParams()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      query: "",
+      query: searchQuery,
     },
   })
-
-  const { setSearchQuery } = usePostFiltersParams()
 
   const handlePostSearch = async ({ query }: z.infer<typeof formSchema>) => {
     setSearchQuery(query)
