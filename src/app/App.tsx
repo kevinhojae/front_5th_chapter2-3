@@ -2,7 +2,6 @@ import { BrowserRouter as Router } from "react-router-dom"
 import Header from "../widgets/ui/Header.tsx"
 import Footer from "../widgets/ui/Footer.tsx"
 import PostsManagerPage from "../pages/PostsManagerPage.tsx"
-import { PostProvider } from "../features/posts-view/model/PostContext.tsx"
 import { QueryClientProvider } from "@tanstack/react-query"
 import { queryClient } from "./lib/queryClient.ts"
 
@@ -13,9 +12,7 @@ const App = () => {
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
           <QueryClientProvider client={queryClient}>
-            <PostProvider>
-              <PostsManagerPage />
-            </PostProvider>
+            <PostsManagerPage />
           </QueryClientProvider>
         </main>
         <Footer />

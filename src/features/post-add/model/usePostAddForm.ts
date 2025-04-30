@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { addPost } from "../api/addPost"
-import { usePosts } from "../../posts-view/model/PostContext"
+import { usePostsQuery } from "../../posts-view/model/usePostsQuery"
 
 export const formSchema = z.object({
   title: z.string().min(1),
@@ -20,7 +20,7 @@ export const usePostAddForm = () => {
     },
   })
 
-  const { setPosts } = usePosts()
+  const { setPosts } = usePostsQuery()
 
   const handleAddPost = async (newPost: z.infer<typeof formSchema>) => {
     try {

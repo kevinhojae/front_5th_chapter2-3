@@ -1,13 +1,13 @@
-import { usePosts } from "../../posts-view/model/PostContext"
 import { Post } from "../../../entities/post/model/post"
 import { deletePost } from "../api"
+import { usePostsQuery } from "../../posts-view/model/usePostsQuery"
 
 interface UsePostDeleteButtonProps {
   post: Post
 }
 
 export const usePostDeleteButton = ({ post }: UsePostDeleteButtonProps) => {
-  const { setPosts } = usePosts()
+  const { setPosts } = usePostsQuery()
 
   const handleDelete = async () => {
     try {

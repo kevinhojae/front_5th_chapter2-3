@@ -3,7 +3,7 @@ import { z } from "zod"
 import { Post } from "../../../entities/post/model/post"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updatePost } from "../api"
-import { usePosts } from "../../posts-view/model/PostContext"
+import { usePostsQuery } from "../../posts-view/model/usePostsQuery"
 
 interface UsePostEditFormProps {
   post: Post
@@ -30,7 +30,7 @@ export const usePostEditForm = ({ post }: UsePostEditFormProps) => {
     },
   })
 
-  const { setPosts } = usePosts()
+  const { setPosts } = usePostsQuery()
 
   const handlePostUpdate = async (data: z.infer<typeof formSchema>) => {
     try {

@@ -6,18 +6,18 @@ import { ThumbsDown, ThumbsUp } from "lucide-react"
 import { usePostEditModal } from "../../post-edit"
 import { usePostDetailModal } from "../../post-detail"
 import { PostDeleteButton } from "../../post-delete"
-import { usePosts } from "../model/PostContext"
 import { usePostFiltersParams } from "../model/usePostFilterParams"
+import { usePostsQuery } from "../model/usePostsQuery"
 
 export function PostTable() {
-  const { posts, loading } = usePosts()
+  const { data: posts, isLoading } = usePostsQuery()
   const { searchQuery, selectedTag } = usePostFiltersParams()
 
   const { UserDetailModal, UserPreview } = useUserDetailModal()
   const { PostDetailModal, PostDetailOpenButton } = usePostDetailModal()
   const { PostEditModal, PostEditButton } = usePostEditModal()
 
-  if (loading) {
+  if (isLoading || !posts) {
     return <div className="flex justify-center p-4">로딩 중...</div>
   }
 

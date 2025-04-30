@@ -1,7 +1,3 @@
-import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
-import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
-import { usePosts } from "./PostContext"
-import { usePaginationParams } from "../../../shared/lib/hooks/usePaginationParams"
 import { usePostFiltersParams } from "./usePostFilterParams"
 import { z } from "zod"
 import { useForm } from "react-hook-form"
@@ -19,26 +15,24 @@ export const usePostSearchInput = () => {
     },
   })
 
-  const { setLoading, setPosts } = usePosts()
-
-  const { limit, skip, setTotal } = usePaginationParams()
   const { setSearchQuery } = usePostFiltersParams()
 
   const handlePostSearch = async ({ query }: z.infer<typeof formSchema>) => {
-    setLoading(true)
+    // setLoading(true)
 
-    try {
-      const { posts, total } = query ? await fetchPostsBySearchQuery(query) : await fetchPostsWithAuthor(limit, skip)
+    // try {
+    //   const { posts, total } = query ? await fetchPostsBySearchQuery(query) : await fetchPostsWithAuthor(limit, skip)
 
-      setPosts(posts)
-      setTotal(total)
+    //   setPosts(posts)
+    //   setTotal(total)
 
-      setSearchQuery(query)
-    } catch (error) {
-      console.error("게시물 검색 오류:", error)
-    } finally {
-      setLoading(false)
-    }
+    //   setSearchQuery(query)
+    // } catch (error) {
+    //   console.error("게시물 검색 오류:", error)
+    // } finally {
+    //   setLoading(false)
+    // }
+    setSearchQuery(query)
   }
 
   return { form, handlePostSearch }
