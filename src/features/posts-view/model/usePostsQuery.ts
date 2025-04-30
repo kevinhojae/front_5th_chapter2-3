@@ -4,7 +4,7 @@ import { usePostFiltersParams } from "./usePostFilterParams"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { PostWithAuthor } from "../api/adaptPostWithAuthor"
-import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
+import { fetchPostsWithAutherBySearch } from "../api/fetchPostsWithAutherBySearch"
 
 export function usePostsQuery() {
   const { limit, skip, setTotal } = usePaginationParams()
@@ -16,7 +16,7 @@ export function usePostsQuery() {
     queryKey,
     queryFn: async () => {
       const fetchers = {
-        search: async () => searchQuery && fetchPostsBySearchQuery(searchQuery),
+        search: async () => searchQuery && fetchPostsWithAutherBySearch(searchQuery),
         tag: async () => selectedTag && selectedTag !== "all" && fetchPostsWithAuthorByTag(selectedTag),
         default: async () => fetchPostsWithAuthor(limit, skip),
       }
