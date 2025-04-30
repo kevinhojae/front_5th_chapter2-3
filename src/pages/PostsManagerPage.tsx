@@ -1,4 +1,4 @@
-import { TablePaginator } from "../features/posts-view/ui/TablePaginator"
+import { TablePaginator } from "../widgets/ui/TablePaginator"
 import { PostSearchInput } from "../features/posts-view/ui/PostSearchInput"
 import { PostTagSelector } from "../features/posts-view/ui/PostTagSelector"
 import { PostSortController } from "../features/posts-view/ui/PostSortController"
