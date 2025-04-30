@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { addPost } from "../api/addPost"
-import { usePosts } from "../../post-view/model/PostContext"
+import { usePosts } from "../../posts-view/model/PostContext"
 
 export const formSchema = z.object({
   title: z.string().min(1),

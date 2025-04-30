@@ -1,6 +1,6 @@
 import { Comment } from "../../../entities/comment/model/comment"
-import { usePostFilters } from "../../post-view/model/PostFilterContext"
-import { HighlightedText } from "../../post-view/ui/HighlightedText"
+import { usePostFilters } from "../../posts-view/model/PostFilterContext"
+import { HighlightedText } from "../../posts-view/ui/HighlightedText"
 
 export function CommentList({
   comments,

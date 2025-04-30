@@ -3,7 +3,7 @@ import { z } from "zod"
 import { Post } from "../../../entities/post/model/post"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updatePost } from "../api"
-import { usePosts } from "../../post-view/model/PostContext"
+import { usePosts } from "../../posts-view/model/PostContext"
 
 interface UsePostEditFormProps {
   post: Post

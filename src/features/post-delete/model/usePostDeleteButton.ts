@@ -1,4 +1,4 @@
-import { usePosts } from "../../post-view/model/PostContext"
+import { usePosts } from "../../posts-view/model/PostContext"
 import { Post } from "../../../entities/post/model/post"
 import { deletePost } from "../api"
 

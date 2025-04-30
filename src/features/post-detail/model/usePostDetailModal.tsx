@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react"
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../shared/ui"
 import { MessageSquare } from "lucide-react"
-import { HighlightedText } from "../../post-view/ui/HighlightedText"
+import { HighlightedText } from "../../posts-view/ui/HighlightedText"
 import { Post } from "../../../entities/post/model/post"
-import { usePostFilters } from "../../post-view/model/PostFilterContext"
+import { usePostFilters } from "../../posts-view/model/PostFilterContext"
 import { CommentContainer } from "../ui/CommentContainer"
 
 export const usePostDetailModal = () => {
