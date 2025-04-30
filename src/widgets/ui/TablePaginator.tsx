@@ -1,6 +1,6 @@
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../shared/ui"
 import { Button } from "../../shared/ui/button"
-import { usePagination } from "../../features/posts-view/model/PaginationContext"
+import { usePaginationParams } from "../../shared/lib/hooks/usePaginationParams"
 
 export function TablePaginator() {
   return (
@@ -22,7 +22,7 @@ const LIMIT_OPTIONS = [
 ]
 
 function LimitSelector() {
-  const { limit, handleLimitChange } = usePagination()
+  const { limit, handleLimitChange } = usePaginationParams()
 
   return (
     <Select value={limit.toString()} onValueChange={(value) => handleLimitChange(Number(value))}>
@@ -41,7 +41,7 @@ function LimitSelector() {
 }
 
 function PageController() {
-  const { isFirstPage, isLastPage, handlePreviousPageClick, handleNextPageClick } = usePagination()
+  const { isFirstPage, isLastPage, handlePreviousPageClick, handleNextPageClick } = usePaginationParams()
 
   return (
     <div className="flex gap-2">

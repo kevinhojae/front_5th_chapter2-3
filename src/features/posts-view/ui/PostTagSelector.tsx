@@ -1,11 +1,11 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../shared/ui"
-import { usePostFilters } from "../model/PostFilterContext"
 import { usePosts } from "../model/PostContext"
 import { usePostTagSelector } from "../model/usePostTagSelector"
+import { usePostFiltersParams } from "../model/usePostFilterParams"
 
 export function PostTagSelector() {
   const { tags } = usePosts()
-  const { selectedTag } = usePostFilters()
+  const { selectedTag } = usePostFiltersParams()
   const { handleTagSelect } = usePostTagSelector()
 
   return (

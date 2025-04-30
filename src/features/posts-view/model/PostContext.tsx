@@ -1,10 +1,10 @@
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { PostWithAuthor } from "../api/adaptPostWithAuthor"
-import { usePagination } from "./PaginationContext"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
 import { fetchTags } from "../../../entities/post/api/fetchTags"
 import { usePostFilters } from "./PostFilterContext"
+import { usePaginationParams } from "../../../shared/lib/hooks/usePaginationParams"
 
 type PostContextType = {
   posts: PostWithAuthor[]
@@ -32,7 +32,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [loading, setLoading] = useState(false)
 
-  const { limit, skip, setTotal } = usePagination()
+  const { limit, skip, setTotal } = usePaginationParams()
   const { sortBy, sortOrder, selectedTag } = usePostFilters()
 
   const getPostsOfSelectedTag = async (tag: string) => {
