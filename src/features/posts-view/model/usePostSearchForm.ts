@@ -7,7 +7,7 @@ const formSchema = z.object({
   query: z.string(),
 })
 
-export const usePostSearchInput = () => {
+export const usePostSearchForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

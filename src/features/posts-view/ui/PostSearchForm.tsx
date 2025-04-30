@@ -1,10 +1,10 @@
 import { Search } from "lucide-react"
 import { Input } from "../../../shared/ui"
-import { usePostSearchInput } from "../model/usePostSearchInput"
+import { usePostSearchForm } from "../model/usePostSearchForm"
 import { Controller } from "react-hook-form"
 
-export function PostSearchInput() {
-  const { form, handlePostSearch } = usePostSearchInput()
+export function PostSearchForm() {
+  const { form, handlePostSearch } = usePostSearchForm()
 
   return (
     <div className="relative flex-1">

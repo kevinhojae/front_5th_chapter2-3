@@ -1,5 +1,5 @@
 import { TablePaginator } from "../widgets/ui/TablePaginator"
-import { PostSearchInput } from "../features/posts-view/ui/PostSearchInput"
+import { PostSearchForm } from "../features/posts-view/ui/PostSearchForm"
 import { PostTagSelector } from "../features/posts-view/ui/PostTagSelector"
 import { PostTable } from "../features/posts-view/ui/PostTable"
 import { usePostAddModal } from "../features/post-add"
@@ -22,7 +22,7 @@ const PostsManager = () => {
         <div className="flex flex-col gap-4">
           {/* 검색 및 필터 컨트롤 */}
           <div className="flex gap-4">
-            <PostSearchInput />
+            <PostSearchForm />
             <PostTagSelector />
             <PostSortOrder />
             <PostSortBy />
