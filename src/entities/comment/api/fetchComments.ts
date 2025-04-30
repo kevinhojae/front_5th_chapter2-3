@@ -1,7 +1,7 @@
 import { PaginatedResponse } from "../../../shared/lib/utility-types"
 import { Comment } from "../model/comment"
 
-export const fetchComments = async (postId: string): Promise<PaginatedResponse<Comment, "comments">> => {
+export const fetchComments = async (postId: number): Promise<PaginatedResponse<Comment, "comments">> => {
   const response = await fetch(`/api/comments/post/${postId}`)
   const data = await response.json()
   return data
