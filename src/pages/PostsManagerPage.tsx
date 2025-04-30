@@ -10,7 +10,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  Input,
   Table,
   TableBody,
   TableCell,
@@ -32,13 +31,11 @@ import { PostTag } from "../features/post-view/ui/PostTag"
 import { PostSortController } from "../features/post-view/ui/PostSortController"
 import { HighlightedText } from "../features/post-view/ui/HighlightedText"
 import { usePostAddModal } from "../features/post-add"
+import { usePostEditModal } from "../features/post-edit"
 
 const PostsManager = () => {
-  // post (게시물) 관련 상태
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null)
-
   // post (게시물) 관련 모달 상태
-  const [showEditDialog, setShowEditDialog] = useState(false)
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null)
   const [showPostDetailDialog, setShowPostDetailDialog] = useState(false)
 
   // comment (댓글) 관련 상태
@@ -67,22 +64,7 @@ const PostsManager = () => {
   const { searchQuery, selectedTag } = usePostFilters()
 
   const { PostAddModal, PostAddButton } = usePostAddModal()
-
-  // 게시물 업데이트
-  const updatePost = async () => {
-    try {
-      const response = await fetch(`/api/posts/${selectedPost?.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(selectedPost),
-      })
-      const data = await response.json()
-      setPosts(posts.map((post) => (post.id === data.id ? data : post)))
-      setShowEditDialog(false)
-    } catch (error) {
-      console.error("게시물 업데이트 오류:", error)
-    }
-  }
+  const { PostEditModal, PostEditButton } = usePostEditModal()
 
   // 게시물 삭제
   const deletePost = async (id: number) => {
@@ -246,16 +228,7 @@ const PostsManager = () => {
                 <Button variant="ghost" size="sm" onClick={() => openPostDetail(post)}>
                   <MessageSquare className="w-4 h-4" />
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setSelectedPost(post)
-                    setShowEditDialog(true)
-                  }}
-                >
-                  <Edit2 className="w-4 h-4" />
-                </Button>
+                <PostEditButton post={post} />
                 <Button variant="ghost" size="sm" onClick={() => deletePost(post.id)}>
                   <Trash2 className="w-4 h-4" />
                 </Button>
@@ -346,27 +319,7 @@ const PostsManager = () => {
       <PostAddModal />
 
       {/* 게시물 수정 대화상자 */}
-      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>게시물 수정</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <Input
-              placeholder="제목"
-              value={selectedPost?.title || ""}
-              onChange={(e) => setSelectedPost({ ...selectedPost!, title: e.target.value })}
-            />
-            <Textarea
-              rows={15}
-              placeholder="내용"
-              value={selectedPost?.body || ""}
-              onChange={(e) => setSelectedPost({ ...selectedPost!, body: e.target.value })}
-            />
-            <Button onClick={updatePost}>게시물 업데이트</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <PostEditModal />
 
       {/* 댓글 추가 대화상자 */}
       <Dialog open={showAddCommentDialog} onOpenChange={setShowAddCommentDialog}>
