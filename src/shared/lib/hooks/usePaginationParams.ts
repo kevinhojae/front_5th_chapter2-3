@@ -1,9 +1,11 @@
 import { useSearchParams } from "react-router-dom"
 
+const DEFAULT_LIMIT = 10
+
 export function usePaginationParams() {
   const [params, setParams] = useSearchParams()
 
-  const limit = parseInt(params.get("limit") || "10")
+  const limit = parseInt(params.get("limit") || DEFAULT_LIMIT.toString())
   const skip = parseInt(params.get("skip") || "0")
   const total = parseInt(params.get("total") || "0")
 

@@ -4,11 +4,12 @@ import userEvent from "@testing-library/user-event"
 import { http, HttpResponse } from "msw"
 import { setupServer } from "msw/node"
 import { MemoryRouter } from "react-router-dom"
-import PostsManager from "../src/pages/PostsManagerPage"
+import { PostsDashboardPage } from "../src/pages"
 import * as React from "react"
 import "@testing-library/jest-dom"
 import { TEST_POSTS, TEST_SEARCH_POST, TEST_USERS } from "./mockData"
-
+import { QueryClientProvider } from "@tanstack/react-query"
+import { queryClient } from "../src/app/lib/queryClient"
 // MSW 서버 설정
 const server = setupServer(
   http.get("/api/posts", () => {
@@ -47,7 +48,9 @@ afterAll(() => server.close())
 const renderPostsManager = () => {
   return render(
     <MemoryRouter>
-      <PostsManager />
+      <QueryClientProvider client={queryClient}>
+        <PostsDashboardPage />
+      </QueryClientProvider>
     </MemoryRouter>,
   )
 }
@@ -86,6 +89,9 @@ describe("PostsManager", () => {
       body: "This is a new post",
       userId: 1,
       tags: [],
+      author: TEST_USERS.users[0],
+      reactions: { likes: 0, dislikes: 0 }, // 필요한 reactions 데이터 추가
+      views: 0, // 필요한 views 데이터 추가
     }
 
     // POST 요청에 대한 핸들러 추가
@@ -97,7 +103,25 @@ describe("PostsManager", () => {
           title: NEW_POST.title,
           body: NEW_POST.body,
         })
-        return HttpResponse.json(NEW_POST)
+
+        // Create a complete post response with the author
+        const postWithAuthor = {
+          ...NEW_POST,
+          // Find and include the author based on userId
+          author: TEST_USERS.users.find((user) => user.id === NEW_POST.userId) || TEST_USERS.users[0],
+        }
+
+        return HttpResponse.json(postWithAuthor)
+      }),
+
+      // GET 요청에 대한 핸들러도 업데이트하여 새 포스트를 포함하도록
+      http.get("/api/posts", () => {
+        // 새 포스트를 포함한 업데이트된 데이터 반환
+        const updatedPosts = {
+          ...TEST_POSTS,
+          posts: [NEW_POST, ...TEST_POSTS.posts],
+        }
+        return HttpResponse.json(updatedPosts)
       }),
     )
 
