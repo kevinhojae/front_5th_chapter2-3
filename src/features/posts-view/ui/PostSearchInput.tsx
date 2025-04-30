@@ -7,8 +7,8 @@ export function PostSearchInput() {
   const { form, handlePostSearch } = usePostSearchInput()
 
   return (
-    <form onSubmit={form.handleSubmit(handlePostSearch)}>
-      <div className="relative flex-1">
+    <div className="relative flex-1">
+      <form onSubmit={form.handleSubmit(handlePostSearch)}>
         <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
         <Controller
           control={form.control}
@@ -22,7 +22,7 @@ export function PostSearchInput() {
             />
           )}
         />
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
