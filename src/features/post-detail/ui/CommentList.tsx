@@ -1,5 +1,5 @@
 import { Comment } from "../../../entities/comment/model/comment"
-import { usePostFilters } from "../../posts-view/model/PostFilterContext"
+import { usePostFiltersParams } from "../../posts-view/model/usePostFilterParams"
 import { HighlightedText } from "../../posts-view/ui/HighlightedText"
 
 export function CommentList({
@@ -9,7 +9,7 @@ export function CommentList({
   comments: Comment[]
   renderActionButtons: (comment: Comment) => React.ReactNode
 }) {
-  const { searchQuery } = usePostFilters()
+  const { searchQuery } = usePostFiltersParams()
 
   return (
     <>

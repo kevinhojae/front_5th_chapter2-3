@@ -1,43 +1,45 @@
-import { useLocation, useNavigate } from "react-router-dom"
 import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
-import { usePagination } from "./PaginationContext"
 import { usePosts } from "./PostContext"
-import { usePostFilters } from "./PostFilterContext"
+import { usePaginationParams } from "../../../shared/lib/hooks/usePaginationParams"
+import { usePostFiltersParams } from "./usePostFilterParams"
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+const formSchema = z.object({
+  query: z.string(),
+})
 
 export const usePostSearchInput = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      query: "",
+    },
+  })
 
   const { setLoading, setPosts } = usePosts()
-  const { limit, skip, setTotal } = usePagination()
-  const { searchQuery, setSearchQuery } = usePostFilters()
 
-  const updateURL = () => {
-    const params = new URLSearchParams(location.search)
-    if (searchQuery) params.set("search", searchQuery)
-    navigate(`?${params.toString()}`)
-  }
+  const { limit, skip, setTotal } = usePaginationParams()
+  const { setSearchQuery } = usePostFiltersParams()
 
-  const handlePostSearch = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      setLoading(true)
+  const handlePostSearch = async ({ query }: z.infer<typeof formSchema>) => {
+    setLoading(true)
 
-      try {
-        const { posts, total } = searchQuery
-          ? await fetchPostsBySearchQuery(searchQuery)
-          : await fetchPostsWithAuthor(limit, skip)
+    try {
+      const { posts, total } = query ? await fetchPostsBySearchQuery(query) : await fetchPostsWithAuthor(limit, skip)
 
-        setPosts(posts)
-        setTotal(total)
-        updateURL()
-      } catch (error) {
-        console.error("게시물 검색 오류:", error)
-      } finally {
-        setLoading(false)
-      }
+      setPosts(posts)
+      setTotal(total)
+
+      setSearchQuery(query)
+    } catch (error) {
+      console.error("게시물 검색 오류:", error)
+    } finally {
+      setLoading(false)
     }
   }
 
-  return { handlePostSearch, searchQuery, setSearchQuery }
+  return { form, handlePostSearch }
 }

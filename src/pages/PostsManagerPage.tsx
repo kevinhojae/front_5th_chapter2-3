@@ -1,10 +1,11 @@
 import { TablePaginator } from "../widgets/ui/TablePaginator"
 import { PostSearchInput } from "../features/posts-view/ui/PostSearchInput"
 import { PostTagSelector } from "../features/posts-view/ui/PostTagSelector"
-import { PostSortController } from "../features/posts-view/ui/PostSortController"
 import { PostTable } from "../features/posts-view/ui/PostTable"
 import { usePostAddModal } from "../features/post-add"
 import { Card, CardContent, CardHeader, CardTitle } from "../shared/ui"
+import { PostSortOrder } from "../features/posts-view/ui/PostSortOrder"
+import { PostSortBy } from "../features/posts-view/ui/PostSortBy"
 
 const PostsManager = () => {
   const { PostAddModal, PostAddButton } = usePostAddModal()
@@ -23,7 +24,8 @@ const PostsManager = () => {
           <div className="flex gap-4">
             <PostSearchInput />
             <PostTagSelector />
-            <PostSortController />
+            <PostSortOrder />
+            <PostSortBy />
           </div>
 
           {/* 게시물 테이블 */}

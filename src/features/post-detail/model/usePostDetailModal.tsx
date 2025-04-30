@@ -3,14 +3,14 @@ import { Button, Dialog, DialogContent, DialogHeader, DialogTitle } from "../../
 import { MessageSquare } from "lucide-react"
 import { HighlightedText } from "../../posts-view/ui/HighlightedText"
 import { Post } from "../../../entities/post/model/post"
-import { usePostFilters } from "../../posts-view/model/PostFilterContext"
 import { CommentContainer } from "../ui/CommentContainer"
+import { usePostFiltersParams } from "../../posts-view/model/usePostFilterParams"
 
 export const usePostDetailModal = () => {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)
   const [showPostDetailModal, setShowPostDetailModal] = useState(false)
 
-  const { searchQuery } = usePostFilters()
+  const { searchQuery } = usePostFiltersParams()
 
   const openPostDetail = useCallback(async (post: Post) => {
     setSelectedPost(post)

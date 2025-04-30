@@ -6,12 +6,12 @@ import { ThumbsDown, ThumbsUp } from "lucide-react"
 import { usePostEditModal } from "../../post-edit"
 import { usePostDetailModal } from "../../post-detail"
 import { PostDeleteButton } from "../../post-delete"
-import { usePostFilters } from "../model/PostFilterContext"
 import { usePosts } from "../model/PostContext"
+import { usePostFiltersParams } from "../model/usePostFilterParams"
 
 export function PostTable() {
   const { posts, loading } = usePosts()
-  const { searchQuery, selectedTag } = usePostFilters()
+  const { searchQuery, selectedTag } = usePostFiltersParams()
 
   const { UserDetailModal, UserPreview } = useUserDetailModal()
   const { PostDetailModal, PostDetailOpenButton } = usePostDetailModal()
