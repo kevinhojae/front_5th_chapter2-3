@@ -1,13 +1,13 @@
-import { TablePaginator } from "../widgets/ui/TablePaginator"
-import { PostSearchForm } from "../features/posts-view/ui/PostSearchForm"
-import { PostTagSelector } from "../features/posts-view/ui/PostTagSelector"
-import { PostTable } from "../features/posts-view/ui/PostTable"
-import { usePostAddModal } from "../features/post-add"
-import { Card, CardContent, CardHeader, CardTitle } from "../shared/ui"
-import { PostSortOrder } from "../features/posts-view/ui/PostSortOrder"
-import { PostSortBy } from "../features/posts-view/ui/PostSortBy"
+import { usePostAddModal } from "../../features/post-add"
+import { PostSearchForm } from "../../features/posts-view/ui/PostSearchForm"
+import { PostSortBy } from "../../features/posts-view/ui/PostSortBy"
+import { PostSortOrder } from "../../features/posts-view/ui/PostSortOrder"
+import { PostTagSelector } from "../../features/posts-view/ui/PostTagSelector"
+import { Card, CardHeader, CardTitle, CardContent } from "../../shared/ui"
+import { TablePaginator } from "../layout/TablePaginator"
+import { PostTable } from "./PostTable"
 
-const PostsManager = () => {
+export function PostsDashboard() {
   const { PostAddModal, PostAddButton } = usePostAddModal()
 
   return (
@@ -40,5 +40,3 @@ const PostsManager = () => {
     </Card>
   )
 }
-
-export default PostsManager
