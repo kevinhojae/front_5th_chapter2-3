@@ -6,10 +6,10 @@ import { usePostTagSelector } from "../model/usePostTagSelector"
 export function PostTagSelector() {
   const { tags } = usePosts()
   const { selectedTag } = usePostFilters()
-  const { handleTagSelect: handleTagChange } = usePostTagSelector()
+  const { handleTagSelect } = usePostTagSelector()
 
   return (
-    <Select value={selectedTag || "all"} onValueChange={handleTagChange}>
+    <Select value={selectedTag || "all"} onValueChange={handleTagSelect}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="태그 선택" />
       </SelectTrigger>

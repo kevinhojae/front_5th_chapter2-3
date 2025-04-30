@@ -1,3 +1,2 @@
-import PostDetail from './PostDetail.tsx'
-
-export { PostDetail }
+export * from "./CommentContainer"
+export * from "./CommentList"

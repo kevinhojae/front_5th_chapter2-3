@@ -35,7 +35,16 @@ export const usePostEditForm = ({ post }: UsePostEditFormProps) => {
   const handlePostUpdate = async (data: z.infer<typeof formSchema>) => {
     try {
       const updatedPost = await updatePost(data)
-      setPosts((prev) => prev.map((post) => (post.id === updatedPost.id ? updatedPost : post)))
+      setPosts((prev) =>
+        prev.map((post) =>
+          post.id === updatedPost.id
+            ? {
+                ...updatedPost,
+                ...data,
+              }
+            : post,
+        ),
+      )
     } catch (error) {
       console.error(error)
     }

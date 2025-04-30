@@ -6,7 +6,7 @@ export function PostSearchInput() {
   const { searchQuery, setSearchQuery, handlePostSearch } = usePostSearchInput()
 
   return (
-    <div className="relative">
+    <div className="relative flex-1">
       <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         placeholder="게시물 검색..."
