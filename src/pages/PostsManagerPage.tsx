@@ -32,6 +32,7 @@ import { PostSortController } from "../features/post-view/ui/PostSortController"
 import { HighlightedText } from "../features/post-view/ui/HighlightedText"
 import { usePostAddModal } from "../features/post-add"
 import { usePostEditModal } from "../features/post-edit"
+import { PostDeleteButton } from "../features/post-delete"
 
 const PostsManager = () => {
   // post (게시물) 관련 모달 상태
@@ -60,23 +61,11 @@ const PostsManager = () => {
   const [selectedUser, setSelectedUser] = useState<UserDetail | null>(null)
   const [showUserModal, setShowUserModal] = useState(false)
 
-  const { posts, setPosts, loading } = usePosts()
+  const { posts, loading } = usePosts()
   const { searchQuery, selectedTag } = usePostFilters()
 
   const { PostAddModal, PostAddButton } = usePostAddModal()
   const { PostEditModal, PostEditButton } = usePostEditModal()
-
-  // 게시물 삭제
-  const deletePost = async (id: number) => {
-    try {
-      await fetch(`/api/posts/${id}`, {
-        method: "DELETE",
-      })
-      setPosts(posts.filter((post) => post.id !== id))
-    } catch (error) {
-      console.error("게시물 삭제 오류:", error)
-    }
-  }
 
   // 댓글 가져오기
   const fetchComments = async (postId: number) => {
@@ -229,9 +218,10 @@ const PostsManager = () => {
                   <MessageSquare className="w-4 h-4" />
                 </Button>
                 <PostEditButton post={post} />
-                <Button variant="ghost" size="sm" onClick={() => deletePost(post.id)}>
+                {/* <Button variant="ghost" size="sm" onClick={() => deletePost(post.id)}>
                   <Trash2 className="w-4 h-4" />
-                </Button>
+                </Button> */}
+                <PostDeleteButton post={post} />
               </div>
             </TableCell>
           </TableRow>

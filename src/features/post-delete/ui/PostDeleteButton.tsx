@@ -1,0 +1,18 @@
+import { Trash2 } from "lucide-react"
+import { Button } from "../../../shared/ui"
+import { Post } from "../../../entities/post/model/post"
+import { usePostDeleteButton } from "../model"
+
+interface PostDeleteButtonProps {
+  post: Post
+}
+
+export function PostDeleteButton({ post }: PostDeleteButtonProps) {
+  const { handleDelete } = usePostDeleteButton({ post })
+
+  return (
+    <Button variant="ghost" size="sm" onClick={handleDelete}>
+      <Trash2 className="w-4 h-4" />
+    </Button>
+  )
+}
