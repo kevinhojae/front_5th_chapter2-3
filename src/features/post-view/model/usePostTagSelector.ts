@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { usePosts } from "./PostProvider"
-import { usePostFilters } from "./PostFilterProvider"
+import { usePosts } from "./PostContext"
+import { usePostFilters } from "./PostFilterContext"
 
 export const usePostTagSelector = () => {
   const location = useLocation()

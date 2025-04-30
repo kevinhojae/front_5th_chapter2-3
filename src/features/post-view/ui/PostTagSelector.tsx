@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../shared/ui"
-import { usePostFilters } from "../model/PostFilterProvider"
-import { usePosts } from "../model/PostProvider"
+import { usePostFilters } from "../model/PostFilterContext"
+import { usePosts } from "../model/PostContext"
 import { usePostTagSelector } from "../model/usePostTagSelector"
 
 export function PostTagSelector() {

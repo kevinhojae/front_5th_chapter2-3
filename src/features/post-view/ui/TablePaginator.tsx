@@ -1,6 +1,6 @@
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../../shared/ui"
 import { Button } from "../../../shared/ui/button"
-import { usePagination } from "../model/PaginationProvider"
+import { usePagination } from "../model/PaginationContext"
 
 export function TablePaginator() {
   return (

@@ -1,5 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../shared/ui"
-import { usePostFilters } from "../model/PostFilterProvider"
+import { usePostFilters } from "../model/PostFilterContext"
 import { usePostSortController } from "../model/usePostSortController"
 
 const SORT_BY_OPTIONS = [

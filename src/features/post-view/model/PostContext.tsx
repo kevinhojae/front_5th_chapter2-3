@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { PostWithAuthor } from "../api/adaptPostWithAuthor"
-import { usePagination } from "./PaginationProvider"
+import { usePagination } from "./PaginationContext"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
 import { fetchTags } from "../../../entities/post/api/fetchTags"
-import { usePostFilters } from "./PostFilterProvider"
+import { usePostFilters } from "./PostFilterContext"
 
 type PostContextType = {
   posts: PostWithAuthor[]
-  setPosts: (posts: PostWithAuthor[]) => void
+  setPosts: Dispatch<SetStateAction<PostWithAuthor[]>>
   loading: boolean
   setLoading: (loading: boolean) => void
   tags: { url: string; slug: string; name: string }[]

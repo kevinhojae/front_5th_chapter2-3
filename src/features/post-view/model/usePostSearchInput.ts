@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { fetchPostsBySearchQuery } from "../api/fetchPostsBySearchQuery"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
-import { usePagination } from "./PaginationProvider"
-import { usePosts } from "./PostProvider"
-import { usePostFilters } from "./PostFilterProvider"
+import { usePagination } from "./PaginationContext"
+import { usePosts } from "./PostContext"
+import { usePostFilters } from "./PostFilterContext"
 
 export const usePostSearchInput = () => {
   const location = useLocation()
