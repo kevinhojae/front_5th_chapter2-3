@@ -2,7 +2,7 @@ import { CommentDeleteButton } from "@features/comment-delete"
 import { CommentLikeButton } from "@features/comment-like"
 import { useCommentWriteModal } from "@features/comment-write"
 
-import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
+import { useCommentQuery } from "@entities/comment"
 
 import { CommentList } from "./CommentList"
 

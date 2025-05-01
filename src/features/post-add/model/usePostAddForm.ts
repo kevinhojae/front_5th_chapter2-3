@@ -4,9 +4,9 @@ import { z } from "zod"
 
 import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
-import { safeExecute } from "@/shared/lib/safeExecute"
+import { addPost } from "@entities/post"
 
-import { addPost } from "../api/addPost"
+import { safeExecute } from "@shared/lib/safeExecute"
 
 export const formSchema = z.object({
   title: z.string().min(1),

@@ -1,6 +1,5 @@
+import { fetcher } from "@shared/lib/fetcher"
 import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
-
-import { fetcher } from "@/shared/lib/fetcher"
 
 import { User } from "../model/user"
 

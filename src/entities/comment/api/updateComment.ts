@@ -1,6 +1,6 @@
-import { Comment } from "@entities/comment/model/comment"
+import { Comment } from "@entities/comment"
 
-import { fetcher } from "@/shared/lib/fetcher"
+import { fetcher } from "@shared/lib/fetcher"
 
 export const updateComment = async (comment: Comment) => {
   const data = await fetcher<Comment>(`/api/comments/${comment.id}`, {

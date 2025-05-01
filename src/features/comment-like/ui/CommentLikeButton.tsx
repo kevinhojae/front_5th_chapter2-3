@@ -1,13 +1,10 @@
 import { ThumbsUp } from "lucide-react"
 
-import { Comment } from "@entities/comment/model/comment"
-import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
+import { Comment, likeComment, useCommentQuery } from "@entities/comment"
 
+import { safeExecute } from "@shared/lib/safeExecute"
 import { Button } from "@shared/ui"
 
-import { safeExecute } from "@/shared/lib/safeExecute"
-
-import { likeComment } from "../api/likeComment"
 import { increaseCommentLike } from "../lib"
 
 interface CommentLikeButtonProps {

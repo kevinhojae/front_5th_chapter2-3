@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { useState } from "react"
 
-import { User } from "@/entities/user/model/user"
+import { User } from "@entities/user"
 
 import { UserDetailModal } from "../ui/UserDetailModal"
 import { UserPreview } from "../ui/UserPreview"

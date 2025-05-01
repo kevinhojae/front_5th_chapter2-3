@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 
-import { Post } from "@entities/post/model/post"
+import { Post } from "@entities/post"
 
 import { PostEditButton } from "../ui/PostEditButton"
 import { PostEditModal } from "../ui/PostEditModal"

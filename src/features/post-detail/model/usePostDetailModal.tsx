@@ -4,7 +4,7 @@ import { useCallback, useState } from "react"
 import { usePostFiltersParams } from "@features/posts-view/model/usePostFilterParams"
 import { HighlightedText } from "@features/posts-view/ui/HighlightedText"
 
-import { Post } from "@entities/post/model/post"
+import { Post } from "@entities/post"
 
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
 

@@ -1,10 +1,9 @@
 import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
-import { Post } from "@entities/post/model/post"
+import { deletePost } from "@entities/post"
+import { Post } from "@entities/post"
 
-import { safeExecute } from "@/shared/lib/safeExecute"
-
-import { deletePost } from "../api"
+import { safeExecute } from "@shared/lib/safeExecute"
 
 interface UsePostDeleteButtonProps {
   post: Post

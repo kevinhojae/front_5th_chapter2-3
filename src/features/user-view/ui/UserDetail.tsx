@@ -1,4 +1,4 @@
-import { useUserQuery } from "@entities/user/model/useUserQuery"
+import { useUserQuery } from "@entities/user"
 
 interface UserDetailProps {
   userId: number

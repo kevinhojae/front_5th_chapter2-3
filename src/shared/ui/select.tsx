@@ -1,6 +1,6 @@
-import { forwardRef } from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
-import { ChevronDown, Check } from "lucide-react"
+import { Check, ChevronDown } from "lucide-react"
+import { forwardRef } from "react"
 
 // 선택 컴포넌트
 export const Select = SelectPrimitive.Root

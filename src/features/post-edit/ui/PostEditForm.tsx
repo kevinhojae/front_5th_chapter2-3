@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form"
 import { z } from "zod"
 
-import { Post } from "@entities/post/model/post"
+import { Post } from "@entities/post"
 
 import { Button, Input, Textarea } from "@shared/ui"
 

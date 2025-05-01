@@ -1,4 +1,4 @@
-import { fetcher } from "@/shared/lib/fetcher"
+import { fetcher } from "@shared/lib/fetcher"
 
 import { Tag } from "../model/post"
 

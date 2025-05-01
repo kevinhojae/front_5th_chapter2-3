@@ -1,6 +1,5 @@
 import { usePaginationParams } from "@shared/lib/hooks/usePaginationParams"
-
-import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui"
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/ui"
 
 export function TablePaginator() {
   return (

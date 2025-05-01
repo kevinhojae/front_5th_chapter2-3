@@ -1,6 +1,6 @@
 import { Controller } from "react-hook-form"
 
-import { Comment } from "@entities/comment/model/comment"
+import { Comment } from "@entities/comment"
 
 import { Button, Textarea } from "@shared/ui"
 

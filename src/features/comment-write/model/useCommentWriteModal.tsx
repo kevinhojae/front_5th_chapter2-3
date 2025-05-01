@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 
-import { Comment } from "@entities/comment/model/comment"
+import { Comment } from "@entities/comment"
 
 import { CommentAddButton } from "../ui/CommentAddButton"
 import { CommentEditButton } from "../ui/CommentEditButton"

@@ -1,8 +1,7 @@
-import { PostWithAuthor } from "@features/posts-view/api/adaptPostWithAuthor"
-
+import { fetcher } from "@shared/lib/fetcher"
 import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
 
-import { fetcher } from "@/shared/lib/fetcher"
+import { PostWithAuthor } from "../model/postWithAuthor"
 
 export const fetchPostsBySearch = async (searchQuery: string) => {
   const data = await fetcher<PaginatedResponse<PostWithAuthor, "posts">>(`/api/posts/search?q=${searchQuery}`)

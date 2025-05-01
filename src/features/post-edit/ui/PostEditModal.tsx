@@ -1,4 +1,4 @@
-import { Post } from "@entities/post/model/post"
+import { Post } from "@entities/post"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
 

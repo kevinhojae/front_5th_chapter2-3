@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react"
 
-import { Post } from "@entities/post/model/post"
+import { Post } from "@entities/post"
 
 import { Button } from "@shared/ui"
 

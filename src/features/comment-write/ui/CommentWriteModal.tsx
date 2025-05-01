@@ -1,4 +1,4 @@
-import { Comment } from "@entities/comment/model"
+import { Comment } from "@entities/comment"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
 

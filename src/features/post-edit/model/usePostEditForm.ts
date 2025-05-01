@@ -4,11 +4,10 @@ import { z } from "zod"
 
 import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
-import { Post } from "@entities/post/model/post"
+import { updatePost } from "@entities/post"
+import { Post } from "@entities/post"
 
-import { safeExecute } from "@/shared/lib/safeExecute"
-
-import { updatePost } from "../api"
+import { safeExecute } from "@shared/lib/safeExecute"
 
 interface UsePostEditFormProps {
   post: Post

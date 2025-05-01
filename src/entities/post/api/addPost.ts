@@ -1,8 +1,8 @@
-import { PostWithAuthor } from "@features/posts-view/api/adaptPostWithAuthor"
+import { Post } from "@entities/post"
 
-import { Post } from "@entities/post/model/post"
+import { fetcher } from "@shared/lib/fetcher"
 
-import { fetcher } from "@/shared/lib/fetcher"
+import { PostWithAuthor } from "../model/postWithAuthor"
 
 type AddPostDTO = Pick<Post, "title" | "body" | "userId">
 

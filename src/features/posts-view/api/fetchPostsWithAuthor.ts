@@ -1,10 +1,9 @@
-import { fetchPosts } from "@entities/post/api/fetchPosts"
+import { PostWithAuthor, fetchPosts } from "@entities/post"
 import { fetchUsers } from "@entities/user/api/fetchUsers"
 
 import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
 
 import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
-import { PostWithAuthor } from "./adaptPostWithAuthor"
 
 export const fetchPostsWithAuthor = async (
   limit: number,

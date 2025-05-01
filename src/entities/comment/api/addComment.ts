@@ -1,6 +1,6 @@
-import { Comment } from "@entities/comment/model/comment"
+import { Comment } from "@entities/comment"
 
-import { fetcher } from "@/shared/lib/fetcher"
+import { fetcher } from "@shared/lib/fetcher"
 
 type NewComment = Omit<Comment, "id" | "likes" | "user"> & {
   postId: number | null
