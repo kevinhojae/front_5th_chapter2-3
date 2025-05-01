@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@shared/lib/utility-types"
+import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
 
 import { Post } from "../model/post"
 

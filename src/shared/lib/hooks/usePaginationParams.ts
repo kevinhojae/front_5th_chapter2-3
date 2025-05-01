@@ -1,5 +1,15 @@
 import { useSearchParams } from "react-router-dom"
 
+type PaginationParams = {
+  total: number
+  skip: number
+  limit: number
+}
+
+export type PaginatedResponse<T, AccesorKey extends string = "items"> = {
+  [key in AccesorKey]: T[]
+} & PaginationParams
+
 const DEFAULT_LIMIT = 10
 
 export function usePaginationParams() {

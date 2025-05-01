@@ -1,7 +1,7 @@
 import { fetchPostsByTag } from "@entities/post/api/fetchPostsByTag"
 import { fetchUsers } from "@entities/user/api/fetchUsers"
 
-import { PaginatedResponse } from "@shared/lib/utility-types"
+import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
 
 import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
 import { PostWithAuthor } from "./adaptPostWithAuthor"
