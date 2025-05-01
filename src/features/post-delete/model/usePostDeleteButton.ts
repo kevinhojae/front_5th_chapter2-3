@@ -1,4 +1,4 @@
-import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
+import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
 
 import { deletePost } from "@entities/post"
 import { Post } from "@entities/post"
@@ -10,7 +10,7 @@ interface UsePostDeleteButtonProps {
 }
 
 export const usePostDeleteButton = ({ post }: UsePostDeleteButtonProps) => {
-  const { setPosts } = usePostsQuery()
+  const { setPosts } = usePostsWithAuthorQuery()
 
   const handleDelete = safeExecute(async () => {
     await deletePost(post.id)

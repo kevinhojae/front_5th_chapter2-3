@@ -16,7 +16,7 @@ export const usePostAddModal = () => {
   )
 
   const PostAddButtonCallback = useCallback(
-    () => <PostAddButton openPostAddModal={() => setShowAddDialog(true)} />,
+    () => <PostAddButton onClick={() => setShowAddDialog(true)} />,
     [setShowAddDialog],
   )
 

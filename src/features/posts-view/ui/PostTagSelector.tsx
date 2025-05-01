@@ -1,7 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/ui"
 
 import { usePostFiltersParams } from "../model/usePostFilterParams"
-import { useTagsQuery } from "../model/useTagsQuery"
+import { useTagsQuery } from "../../../entities/post/model/useTagsQuery"
 
 export function PostTagSelector() {
   const { data: tags } = useTagsQuery()

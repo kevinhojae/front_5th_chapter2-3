@@ -9,7 +9,7 @@ import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
 import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
 import { usePostFiltersParams } from "./usePostFilterParams"
 
-export function usePostsQuery() {
+export function usePostsWithAuthorQuery() {
   const { limit, skip, setTotal } = usePaginationParams()
   const { searchQuery, selectedTag, sortBy, sortOrder } = usePostFiltersParams()
 

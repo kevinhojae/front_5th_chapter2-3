@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
+import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
 
 import { addPost } from "@entities/post"
 
@@ -24,7 +24,7 @@ export const usePostAddForm = () => {
     },
   })
 
-  const { setPosts } = usePostsQuery()
+  const { setPosts } = usePostsWithAuthorQuery()
 
   const handleAddPost = safeExecute(async (newPost: z.infer<typeof formSchema>) => {
     const addedPost = await addPost(newPost)

@@ -1,2 +1,2 @@
 export * from "./comment"
-export * from "./useCommentQuery"
+export * from "./useCommentsQuery"
