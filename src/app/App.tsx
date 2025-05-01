@@ -1,5 +1,6 @@
 import { QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter as Router } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
 
 import { PostsDashboardPage } from "@pages/PostsDashboardPage"
 
@@ -11,6 +12,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <PostsDashboardPage />
       </QueryClientProvider>
+      <ToastContainer />
     </Router>
   )
 }
