@@ -7,10 +7,14 @@ export const safeExecute = <T, Args extends unknown[]>(fn: (...args: Args) => Pr
     try {
       return await fn(...args)
     } catch (error) {
+      console.error(error)
+
       if (error instanceof CustomError) {
-        console.error(error)
         toast.error(error.message)
+        return
       }
+
+      toast.error("예상치 못한 오류가 발생했습니다")
     }
   }
 }

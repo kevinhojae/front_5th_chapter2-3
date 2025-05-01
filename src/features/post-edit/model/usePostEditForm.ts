@@ -7,7 +7,7 @@ import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 import { updatePost } from "@entities/post"
 import { Post } from "@entities/post"
 
-import { safeExecute } from "@shared/lib/safeExecute"
+import { safeExecute } from "@shared/lib"
 
 interface UsePostEditFormProps {
   post: Post

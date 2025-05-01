@@ -4,7 +4,7 @@ import { z } from "zod"
 
 import { Comment, addComment, updateComment, useCommentQuery } from "@entities/comment"
 
-import { safeExecute } from "@shared/lib/safeExecute"
+import { safeExecute } from "@shared/lib"
 
 import { updateCommentBody } from "../lib/updateCommentBody"
 

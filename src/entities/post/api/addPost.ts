@@ -1,6 +1,6 @@
 import { Post } from "@entities/post"
 
-import { fetcher } from "@shared/lib/fetcher"
+import { fetcher } from "@shared/lib"
 
 import { PostWithAuthor } from "../model/postWithAuthor"
 

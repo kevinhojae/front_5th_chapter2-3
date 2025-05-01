@@ -1,6 +1,6 @@
 import { Comment } from "@entities/comment"
 
-import { fetcher } from "@shared/lib/fetcher"
+import { fetcher } from "@shared/lib"
 
 export const likeComment = async (comment: Comment) => {
   const data = await fetcher<Comment>(`/api/comments/${comment.id}`, {

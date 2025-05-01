@@ -6,7 +6,7 @@ import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
 import { addPost } from "@entities/post"
 
-import { safeExecute } from "@shared/lib/safeExecute"
+import { safeExecute } from "@shared/lib"
 
 export const formSchema = z.object({
   title: z.string().min(1),

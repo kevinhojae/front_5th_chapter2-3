@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 import { PostWithAuthor } from "@entities/post"
 
-import { usePaginationParams } from "@shared/lib/hooks/usePaginationParams"
+import { usePaginationParams } from "@/shared/lib/hooks/usePaginationParams"
 
 import { fetchPostsWithAutherBySearch } from "../api/fetchPostsWithAutherBySearch"
 import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"

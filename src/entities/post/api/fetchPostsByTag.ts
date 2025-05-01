@@ -1,5 +1,5 @@
-import { fetcher } from "@shared/lib/fetcher"
-import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
+import { fetcher } from "@shared/lib"
+import { PaginatedResponse } from "@/shared/lib/hooks/usePaginationParams"
 
 import { Post } from "../model/post"
 

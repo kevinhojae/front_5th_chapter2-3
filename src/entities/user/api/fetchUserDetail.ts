@@ -1,4 +1,4 @@
-import { fetcher } from "@shared/lib/fetcher"
+import { fetcher } from "@shared/lib"
 
 import { UserDetail } from "../model/userDetail"
 
