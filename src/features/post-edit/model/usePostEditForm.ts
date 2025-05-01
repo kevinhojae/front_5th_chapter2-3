@@ -6,6 +6,8 @@ import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
 import { Post } from "@entities/post/model/post"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { updatePost } from "../api"
 
 interface UsePostEditFormProps {
@@ -35,23 +37,19 @@ export const usePostEditForm = ({ post }: UsePostEditFormProps) => {
 
   const { setPosts } = usePostsQuery()
 
-  const handlePostUpdate = async (data: z.infer<typeof formSchema>) => {
-    try {
-      const updatedPost = await updatePost(data)
-      setPosts((prev) =>
-        prev.map((post) =>
-          post.id === updatedPost.id
-            ? {
-                ...updatedPost,
-                ...data,
-              }
-            : post,
-        ),
-      )
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const handlePostUpdate = safeExecute(async (data: z.infer<typeof formSchema>) => {
+    const updatedPost = await updatePost(data)
+    setPosts((prev) =>
+      prev.map((post) =>
+        post.id === updatedPost.id
+          ? {
+              ...updatedPost,
+              ...data,
+            }
+          : post,
+      ),
+    )
+  })
 
   return {
     form,

@@ -12,7 +12,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <PostsDashboardPage />
       </QueryClientProvider>
-      <ToastContainer />
+      <ToastContainer stacked newestOnTop />
     </Router>
   )
 }

@@ -5,6 +5,8 @@ import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
 
 import { Button } from "@shared/ui"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { likeComment } from "../api/likeComment"
 import { increaseCommentLike } from "../lib"
 
@@ -15,14 +17,10 @@ interface CommentLikeButtonProps {
 export function CommentLikeButton({ comment }: CommentLikeButtonProps) {
   const { setQueryData } = useCommentQuery(comment.postId)
 
-  const handleCommentLike = async () => {
-    try {
-      await likeComment(comment)
-      setQueryData((prev) => increaseCommentLike(prev, comment.id))
-    } catch (error) {
-      console.error("좋아요 추가 실패", error)
-    }
-  }
+  const handleCommentLike = safeExecute(async () => {
+    await likeComment(comment)
+    setQueryData((prev) => increaseCommentLike(prev, comment.id))
+  })
 
   return (
     <Button variant="ghost" size="sm" onClick={handleCommentLike}>

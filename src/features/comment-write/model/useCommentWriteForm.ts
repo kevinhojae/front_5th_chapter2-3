@@ -5,6 +5,8 @@ import { z } from "zod"
 import { Comment } from "@entities/comment/model/comment"
 import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { updateComment } from "../api"
 import { addComment } from "../api/addComment"
 import { updateCommentBody } from "../lib/updateCommentBody"
@@ -31,35 +33,27 @@ export const useCommentWriteForm = ({
 
   const { setQueryData } = useCommentQuery(postId)
 
-  const handleCommentAdd = async ({ body }: z.infer<typeof formSchema>) => {
-    try {
-      const newComment = {
-        body,
-        postId,
-        userId: 1,
-      }
-      const addedComment = await addComment(newComment)
-
-      setQueryData((prev) => [...prev, addedComment])
-      onComplete()
-    } catch (error) {
-      console.error("댓글 추가 오류:", error)
+  const handleCommentAdd = safeExecute(async ({ body }: z.infer<typeof formSchema>) => {
+    const newComment = {
+      body,
+      postId,
+      userId: 1,
     }
-  }
+    const addedComment = await addComment(newComment)
 
-  const handleCommentUpdate = async ({ body }: z.infer<typeof formSchema>) => {
-    try {
-      const updatedComment = await updateComment({
-        ...comment!,
-        body,
-      })
+    setQueryData((prev) => [...prev, addedComment])
+    onComplete()
+  })
 
-      setQueryData((prev) => updateCommentBody(prev, { updatedId: updatedComment.id, body }))
-      onComplete()
-    } catch (error) {
-      console.error("댓글 수정 오류:", error)
-    }
-  }
+  const handleCommentUpdate = safeExecute(async ({ body }: z.infer<typeof formSchema>) => {
+    const updatedComment = await updateComment({
+      ...comment!,
+      body,
+    })
+
+    setQueryData((prev) => updateCommentBody(prev, { updatedId: updatedComment.id, body }))
+    onComplete()
+  })
 
   return {
     form,

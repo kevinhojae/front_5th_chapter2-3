@@ -2,6 +2,8 @@ import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
 import { Post } from "@entities/post/model/post"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { deletePost } from "../api"
 
 interface UsePostDeleteButtonProps {
@@ -11,14 +13,10 @@ interface UsePostDeleteButtonProps {
 export const usePostDeleteButton = ({ post }: UsePostDeleteButtonProps) => {
   const { setPosts } = usePostsQuery()
 
-  const handleDelete = async () => {
-    try {
-      await deletePost(post.id)
-      setPosts((prev) => prev.filter((p) => p.id !== post.id))
-    } catch (error) {
-      console.error("게시물 삭제 오류:", error)
-    }
-  }
+  const handleDelete = safeExecute(async () => {
+    await deletePost(post.id)
+    setPosts((prev) => prev.filter((p) => p.id !== post.id))
+  })
 
   return { handleDelete }
 }

@@ -5,6 +5,8 @@ import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
 
 import { Button } from "@shared/ui"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { deleteComment } from "../api/deleteComment"
 
 interface CommentDeleteButtonProps {
@@ -15,14 +17,10 @@ interface CommentDeleteButtonProps {
 export function CommentDeleteButton({ comment, postId }: CommentDeleteButtonProps) {
   const { setQueryData } = useCommentQuery(postId)
 
-  const handleDeleteComment = async () => {
-    try {
-      await deleteComment(comment.id)
-      setQueryData((prev) => prev.filter((c) => c.id !== comment.id))
-    } catch (error) {
-      console.error("댓글 삭제 오류:", error)
-    }
-  }
+  const handleDeleteComment = safeExecute(async () => {
+    await deleteComment(comment.id)
+    setQueryData((prev) => prev.filter((c) => c.id !== comment.id))
+  })
 
   return (
     <Button variant="ghost" size="sm" onClick={handleDeleteComment}>

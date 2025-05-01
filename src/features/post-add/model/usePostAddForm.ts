@@ -4,6 +4,8 @@ import { z } from "zod"
 
 import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
 
+import { safeExecute } from "@/shared/lib/safeExecute"
+
 import { addPost } from "../api/addPost"
 
 export const formSchema = z.object({
@@ -24,15 +26,10 @@ export const usePostAddForm = () => {
 
   const { setPosts } = usePostsQuery()
 
-  const handleAddPost = async (newPost: z.infer<typeof formSchema>) => {
-    try {
-      const addedPost = await addPost(newPost)
-
-      setPosts((prev) => [addedPost, ...prev])
-    } catch (error) {
-      console.error("게시물 추가 오류:", error)
-    }
-  }
+  const handleAddPost = safeExecute(async (newPost: z.infer<typeof formSchema>) => {
+    const addedPost = await addPost(newPost)
+    setPosts((prev) => [addedPost, ...prev])
+  })
 
   return { form, handleAddPost }
 }
