@@ -27,19 +27,19 @@ export class CustomError extends Error {
 
 export class ApiError extends CustomError {
   constructor({ message, body, status }: { message: string; status: number; body?: unknown }) {
-    super({ message: message || "Internal server error", body, status })
+    super({ message: message || "서버 오류가 발생했습니다", body, status })
   }
 }
 
 export class NetworkError extends CustomError {
   constructor({ message, body, status }: { message: string; body?: unknown; status: number }) {
-    super({ message: message || "Network error", body, status })
+    super({ message: message || "네트워크 오류가 발생했습니다", body, status })
   }
 }
 
 export class ClientError extends CustomError {
   constructor({ message, body, status }: { message: string; body?: unknown; status: number }) {
-    super({ message: message || "Client error", body, status })
+    super({ message: message || "요청 처리 중 문제가 발생했습니다.", body, status })
   }
 }
 
