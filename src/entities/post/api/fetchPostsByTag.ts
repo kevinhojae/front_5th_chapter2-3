@@ -1,9 +1,10 @@
 import { PaginatedResponse } from "@shared/lib/hooks/usePaginationParams"
 
+import { fetcher } from "@/shared/lib/fetcher"
+
 import { Post } from "../model/post"
 
-export const fetchPostsByTag = async (tag: string): Promise<PaginatedResponse<Post, "posts">> => {
-  const response = await fetch(`/api/posts/tag/${tag}`)
-  const data = await response.json()
+export const fetchPostsByTag = async (tag: string) => {
+  const data = await fetcher<PaginatedResponse<Post, "posts">>(`/api/posts/tag/${tag}`)
   return data
 }

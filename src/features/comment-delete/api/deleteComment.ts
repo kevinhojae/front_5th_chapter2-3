@@ -1,7 +1,8 @@
+import { fetcher } from "@/shared/lib/fetcher"
+
 export const deleteComment = async (id: number) => {
-  const response = await fetch(`/api/comments/${id}`, {
+  const data = await fetcher<Comment>(`/api/comments/${id}`, {
     method: "DELETE",
   })
-  const data = await response.json()
   return data
 }

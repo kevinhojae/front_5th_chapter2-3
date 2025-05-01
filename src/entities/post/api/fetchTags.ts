@@ -1,5 +1,8 @@
-export const fetchTags = async (): Promise<{ url: string; slug: string; name: string }[]> => {
-  const response = await fetch("/api/posts/tags")
-  const data = await response.json()
+import { fetcher } from "@/shared/lib/fetcher"
+
+import { Tag } from "../model/post"
+
+export const fetchTags = async () => {
+  const data = await fetcher<Tag[]>("/api/posts/tags")
   return data
 }

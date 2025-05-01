@@ -1,6 +1,9 @@
+import { Post } from "@/entities/post/model/post"
+import { fetcher } from "@/shared/lib/fetcher"
+
 export const deletePost = async (id: number) => {
-  const response = await fetch(`/api/posts/${id}`, {
+  const data = await fetcher<Post>(`/api/posts/${id}`, {
     method: "DELETE",
   })
-  return response.json()
+  return data
 }
