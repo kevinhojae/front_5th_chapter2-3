@@ -2,12 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { usePostsWithAuthorQuery } from "@features/posts-view/model/usePostsWithAuthorQuery"
+
 import { updatePost } from "@entities/post"
 import { Post } from "@entities/post"
 
 import { useSafeMutation } from "@shared/lib"
-
-import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
 
 interface UsePostEditFormProps {
   post: Post
