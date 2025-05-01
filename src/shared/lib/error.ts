@@ -44,17 +44,19 @@ export class ClientError extends CustomError {
 }
 
 export const handleErrorResponse = (response: Response) => {
-  if (response.status in networkErrorCode) {
-    return new NetworkError({ message: response.statusText, status: response.status, body: response.body })
+  const { status, statusText, body } = response
+
+  if (status in networkErrorCode) {
+    return new NetworkError({ message: statusText, status, body })
   }
 
-  if (response.status in apiErrorCode) {
-    return new ApiError({ message: response.statusText, status: response.status, body: response.body })
+  if (status in apiErrorCode) {
+    return new ApiError({ message: statusText, status, body })
   }
 
-  if (response.status in clientErrorCode) {
-    return new ClientError({ message: response.statusText, status: response.status, body: response.body })
+  if (status in clientErrorCode) {
+    return new ClientError({ message: statusText, status, body })
   }
 
-  return new CustomError({ message: response.statusText, status: response.status, body: response.body })
+  return new CustomError({ message: statusText, status, body })
 }
