@@ -2,12 +2,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
-
 import { updatePost } from "@entities/post"
 import { Post } from "@entities/post"
 
-import { safeExecute } from "@shared/lib"
+import { useSafeMutation } from "@shared/lib"
+
+import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
 
 interface UsePostEditFormProps {
   post: Post
@@ -36,22 +36,15 @@ export const usePostEditForm = ({ post }: UsePostEditFormProps) => {
 
   const { setPosts } = usePostsWithAuthorQuery()
 
-  const handlePostUpdate = safeExecute(async (data: z.infer<typeof formSchema>) => {
-    const updatedPost = await updatePost(data)
-    setPosts((prev) =>
-      prev.map((post) =>
-        post.id === updatedPost.id
-          ? {
-              ...updatedPost,
-              ...data,
-            }
-          : post,
-      ),
-    )
+  const mutation = useSafeMutation({
+    mutationFn: updatePost,
+    onSuccess: (data) => {
+      setPosts((prev) => prev.map((post) => (post.id === data.id ? { ...data } : post)))
+    },
   })
 
   return {
     form,
-    handlePostUpdate,
+    handlePostUpdate: mutation.mutate,
   }
 }

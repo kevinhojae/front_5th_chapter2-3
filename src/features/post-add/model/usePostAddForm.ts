@@ -2,11 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
-
 import { addPost } from "@entities/post"
 
-import { safeExecute } from "@shared/lib"
+import { usePostsWithAuthorQuery } from "@features/posts-view/model/usePostsWithAuthorQuery"
+import { useSafeMutation } from "@shared/lib"
 
 export const formSchema = z.object({
   title: z.string().min(1),
@@ -26,10 +25,12 @@ export const usePostAddForm = () => {
 
   const { setPosts } = usePostsWithAuthorQuery()
 
-  const handleAddPost = safeExecute(async (newPost: z.infer<typeof formSchema>) => {
-    const addedPost = await addPost(newPost)
-    setPosts((prev) => [addedPost, ...prev])
+  const mutation = useSafeMutation({
+    mutationFn: addPost,
+    onSuccess: (data) => {
+      setPosts((prev) => [data, ...prev])
+    },
   })
 
-  return { form, handleAddPost }
+  return { form, handleAddPost: mutation.mutate }
 }

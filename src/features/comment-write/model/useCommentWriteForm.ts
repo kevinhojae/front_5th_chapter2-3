@@ -4,7 +4,7 @@ import { z } from "zod"
 
 import { Comment, addComment, updateComment, useCommentQuery } from "@entities/comment"
 
-import { safeExecute } from "@shared/lib"
+import { useSafeMutation } from "@shared/lib"
 
 import { updateCommentBody } from "../lib/updateCommentBody"
 
@@ -30,27 +30,29 @@ export const useCommentWriteForm = ({
 
   const { setQueryData } = useCommentQuery(postId)
 
-  const handleCommentAdd = safeExecute(async ({ body }: z.infer<typeof formSchema>) => {
-    const newComment = {
-      body,
-      postId,
-      userId: 1,
-    }
-    const addedComment = await addComment(newComment)
-
-    setQueryData((prev) => [...prev, addedComment])
-    onComplete()
+  const addCommentMutation = useSafeMutation({
+    mutationFn: ({ body }: z.infer<typeof formSchema>) => addComment({ body, postId, userId: 1 }),
+    onSuccess: (data) => {
+      setQueryData((prev) => [...prev, data])
+      onComplete()
+    },
   })
 
-  const handleCommentUpdate = safeExecute(async ({ body }: z.infer<typeof formSchema>) => {
-    const updatedComment = await updateComment({
-      ...comment!,
-      body,
-    })
-
-    setQueryData((prev) => updateCommentBody(prev, { updatedId: updatedComment.id, body }))
-    onComplete()
+  const updateCommentMutation = useSafeMutation({
+    mutationFn: ({ body }: z.infer<typeof formSchema>) => updateComment({ ...comment!, body }),
+    onSuccess: (data) => {
+      setQueryData((prev) => updateCommentBody(prev, { updatedId: data.id, body: data.body }))
+      onComplete()
+    },
   })
+
+  const handleCommentAdd = ({ body }: z.infer<typeof formSchema>) => {
+    addCommentMutation.mutate({ body })
+  }
+
+  const handleCommentUpdate = ({ body }: z.infer<typeof formSchema>) => {
+    updateCommentMutation.mutate({ body })
+  }
 
   return {
     form,

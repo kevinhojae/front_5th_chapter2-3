@@ -1,9 +1,9 @@
-import { usePostsWithAuthorQuery } from "@/features/posts-view/model/usePostsWithAuthorQuery"
+import { usePostsWithAuthorQuery } from "@features/posts-view/model/usePostsWithAuthorQuery"
 
 import { deletePost } from "@entities/post"
 import { Post } from "@entities/post"
 
-import { safeExecute } from "@shared/lib"
+import { useSafeMutation } from "@shared/lib"
 
 interface UsePostDeleteButtonProps {
   post: Post
@@ -12,10 +12,16 @@ interface UsePostDeleteButtonProps {
 export const usePostDeleteButton = ({ post }: UsePostDeleteButtonProps) => {
   const { setPosts } = usePostsWithAuthorQuery()
 
-  const handleDelete = safeExecute(async () => {
-    await deletePost(post.id)
-    setPosts((prev) => prev.filter((p) => p.id !== post.id))
+  const mutation = useSafeMutation({
+    mutationFn: deletePost,
+    onSuccess: () => {
+      setPosts((prev) => prev.filter((p) => p.id !== post.id))
+    },
   })
+
+  const handleDelete = () => {
+    mutation.mutate(post.id)
+  }
 
   return { handleDelete }
 }
