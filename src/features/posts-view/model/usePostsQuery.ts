@@ -29,6 +29,10 @@ export function usePostsQuery() {
       setTotal(total)
       return posts
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    staleTime: Infinity,
   })
 
   const queryClient = useQueryClient()
