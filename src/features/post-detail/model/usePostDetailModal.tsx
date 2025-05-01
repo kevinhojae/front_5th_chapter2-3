@@ -1,10 +1,14 @@
-import { useCallback, useState } from "react"
-import { Button, Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../shared/ui"
 import { MessageSquare } from "lucide-react"
-import { HighlightedText } from "../../posts-view/ui/HighlightedText"
-import { Post } from "../../../entities/post/model/post"
+import { useCallback, useState } from "react"
+
+import { usePostFiltersParams } from "@features/posts-view/model/usePostFilterParams"
+import { HighlightedText } from "@features/posts-view/ui/HighlightedText"
+
+import { Post } from "@entities/post/model/post"
+
+import { Button, Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
+
 import { CommentContainer } from "../ui/CommentContainer"
-import { usePostFiltersParams } from "../../posts-view/model/usePostFilterParams"
 
 export const usePostDetailModal = () => {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)

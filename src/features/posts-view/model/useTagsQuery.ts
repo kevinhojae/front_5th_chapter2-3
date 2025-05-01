@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { fetchTags } from "../../../entities/post/api/fetchTags"
+
+import { fetchTags } from "@entities/post/api/fetchTags"
 
 export function useTagsQuery() {
   const query = useQuery<{ url: string; slug: string; name: string }[]>({

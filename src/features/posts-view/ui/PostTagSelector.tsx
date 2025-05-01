@@ -1,4 +1,5 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../shared/ui"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/ui"
+
 import { usePostFiltersParams } from "../model/usePostFilterParams"
 import { useTagsQuery } from "../model/useTagsQuery"
 

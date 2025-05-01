@@ -1,7 +1,9 @@
-import { useCommentQuery } from "../../../entities/comment/model/useCommentQuery"
-import { useCommentWriteModal } from "../../comment-write"
-import { CommentLikeButton } from "../../comment-like"
-import { CommentDeleteButton } from "../../comment-delete"
+import { CommentDeleteButton } from "@features/comment-delete"
+import { CommentLikeButton } from "@features/comment-like"
+import { useCommentWriteModal } from "@features/comment-write"
+
+import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
+
 import { CommentList } from "./CommentList"
 
 interface CommentContainerProps {

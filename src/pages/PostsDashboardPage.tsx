@@ -1,5 +1,5 @@
-import { DashboardLayout } from "../widgets/layout"
-import { PostsDashboard } from "../widgets/post"
+import { DashboardLayout } from "@widgets/layout"
+import { PostsDashboard } from "@widgets/post"
 
 export function PostsDashboardPage() {
   return (

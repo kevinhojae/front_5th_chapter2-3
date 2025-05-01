@@ -1,7 +1,9 @@
 import { Search } from "lucide-react"
-import { Input } from "../../../shared/ui"
-import { usePostSearchForm } from "../model/usePostSearchForm"
 import { Controller } from "react-hook-form"
+
+import { Input } from "@shared/ui"
+
+import { usePostSearchForm } from "../model/usePostSearchForm"
 
 export function PostSearchForm() {
   const { form, handlePostSearch } = usePostSearchForm()

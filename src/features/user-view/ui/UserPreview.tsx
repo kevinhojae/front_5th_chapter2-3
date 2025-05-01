@@ -1,4 +1,4 @@
-import { User } from "../../../entities/user/model/user"
+import { User } from "@entities/user/model/user"
 
 interface UserPreviewProps {
   user: User

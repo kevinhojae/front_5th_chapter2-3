@@ -1,6 +1,9 @@
 import { Trash2 } from "lucide-react"
-import { Button } from "../../../shared/ui"
-import { Post } from "../../../entities/post/model/post"
+
+import { Post } from "@entities/post/model/post"
+
+import { Button } from "@shared/ui"
+
 import { usePostDeleteButton } from "../model"
 
 interface PostDeleteButtonProps {

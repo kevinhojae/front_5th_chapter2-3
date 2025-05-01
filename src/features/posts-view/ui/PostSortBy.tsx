@@ -1,4 +1,5 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../shared/ui"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shared/ui"
+
 import { usePostFiltersParams } from "../model/usePostFilterParams"
 
 const SORT_BY_OPTIONS = [

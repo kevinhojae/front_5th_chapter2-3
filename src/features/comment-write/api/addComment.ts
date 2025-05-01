@@ -1,4 +1,4 @@
-import { Comment } from "../../../entities/comment/model/comment"
+import { Comment } from "@entities/comment/model/comment"
 
 type NewComment = Omit<Comment, "id" | "likes" | "user"> & {
   postId: number | null

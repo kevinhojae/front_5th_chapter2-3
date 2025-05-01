@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react"
-import { Post } from "../../../entities/post/model/post"
-import { PostEditModal } from "../ui/PostEditModal"
+
+import { Post } from "@entities/post/model/post"
+
 import { PostEditButton } from "../ui/PostEditButton"
+import { PostEditModal } from "../ui/PostEditModal"
 
 export const usePostEditModal = () => {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null)

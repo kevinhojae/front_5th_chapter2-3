@@ -1,4 +1,5 @@
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
 import { Post } from "../model/post"
 
 export const fetchPostsByTag = async (tag: string): Promise<PaginatedResponse<Post, "posts">> => {

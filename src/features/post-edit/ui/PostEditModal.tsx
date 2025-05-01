@@ -1,5 +1,7 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../shared/ui"
-import { Post } from "../../../entities/post/model/post"
+import { Post } from "@entities/post/model/post"
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
+
 import { PostEditForm } from "./PostEditForm"
 
 interface PostEditModalProps {

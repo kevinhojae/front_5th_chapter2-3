@@ -1,9 +1,10 @@
 import { useCallback } from "react"
-
 import { useState } from "react"
-import { User } from "../../../entities/user/model/user"
-import { UserPreview } from "../ui/UserPreview"
+
+import { User } from "@/entities/user/model/user"
+
 import { UserDetailModal } from "../ui/UserDetailModal"
+import { UserPreview } from "../ui/UserPreview"
 
 export const useUserDetailModal = () => {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null)

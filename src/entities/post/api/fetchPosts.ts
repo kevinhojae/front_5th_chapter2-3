@@ -1,4 +1,5 @@
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
 import { Post } from "../model/post"
 
 export const fetchPosts = async (limit: number, skip: number): Promise<PaginatedResponse<Post, "posts">> => {

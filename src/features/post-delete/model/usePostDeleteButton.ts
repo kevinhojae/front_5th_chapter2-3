@@ -1,6 +1,8 @@
-import { Post } from "../../../entities/post/model/post"
+import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
+
+import { Post } from "@entities/post/model/post"
+
 import { deletePost } from "../api"
-import { usePostsQuery } from "../../posts-view/model/usePostsQuery"
 
 interface UsePostDeleteButtonProps {
   post: Post

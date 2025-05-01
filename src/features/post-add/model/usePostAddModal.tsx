@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react"
-import { Post } from "../../../entities/post/model/post"
-import { PostAddModal } from "../ui/PostAddModal"
+
+import { Post } from "@entities/post/model/post"
+
 import { PostAddButton } from "../ui/PostAddButton"
+import { PostAddModal } from "../ui/PostAddModal"
 
 export type NewPost = Pick<Post, "title" | "body" | "userId">
 

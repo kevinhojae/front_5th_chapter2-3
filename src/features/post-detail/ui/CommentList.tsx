@@ -1,6 +1,7 @@
-import { Comment } from "../../../entities/comment/model/comment"
-import { usePostFiltersParams } from "../../posts-view/model/usePostFilterParams"
-import { HighlightedText } from "../../posts-view/ui/HighlightedText"
+import { usePostFiltersParams } from "@features/posts-view/model/usePostFilterParams"
+import { HighlightedText } from "@features/posts-view/ui/HighlightedText"
+
+import { Comment } from "@entities/comment/model/comment"
 
 export function CommentList({
   comments,

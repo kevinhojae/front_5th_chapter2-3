@@ -1,10 +1,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { usePaginationParams } from "../../../shared/lib/hooks/usePaginationParams"
-import { usePostFiltersParams } from "./usePostFilterParams"
-import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
-import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
+
+import { usePaginationParams } from "@shared/lib/hooks/usePaginationParams"
+
 import { PostWithAuthor } from "../api/adaptPostWithAuthor"
 import { fetchPostsWithAutherBySearch } from "../api/fetchPostsWithAutherBySearch"
+import { fetchPostsWithAuthor } from "../api/fetchPostsWithAuthor"
+import { fetchPostsWithAuthorByTag } from "../api/fetchPostsWithAuthorByTag"
+import { usePostFiltersParams } from "./usePostFilterParams"
 
 export function usePostsQuery() {
   const { limit, skip, setTotal } = usePaginationParams()

@@ -1,6 +1,9 @@
 import { Controller } from "react-hook-form"
-import { Comment } from "../../../entities/comment/model/comment"
-import { Button, Textarea } from "../../../shared/ui"
+
+import { Comment } from "@entities/comment/model/comment"
+
+import { Button, Textarea } from "@shared/ui"
+
 import { useCommentWriteForm } from "../model/useCommentWriteForm"
 
 export function CommentWriteForm({

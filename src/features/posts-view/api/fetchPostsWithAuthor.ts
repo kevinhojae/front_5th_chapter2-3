@@ -1,8 +1,10 @@
-import { fetchPosts } from "../../../entities/post/api/fetchPosts"
-import { fetchUsers } from "../../../entities/user/api/fetchUsers"
+import { fetchPosts } from "@entities/post/api/fetchPosts"
+import { fetchUsers } from "@entities/user/api/fetchUsers"
+
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
 import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
 import { PostWithAuthor } from "./adaptPostWithAuthor"
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
 
 export const fetchPostsWithAuthor = async (
   limit: number,

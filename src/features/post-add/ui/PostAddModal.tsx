@@ -1,4 +1,5 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../shared/ui"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
+
 import { PostAddForm } from "./PostAddForm"
 
 interface PostAddModalProps {

@@ -1,9 +1,12 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Post } from "../../../entities/post/model/post"
-import { zodResolver } from "@hookform/resolvers/zod"
+
+import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
+
+import { Post } from "@entities/post/model/post"
+
 import { updatePost } from "../api"
-import { usePostsQuery } from "../../posts-view/model/usePostsQuery"
 
 interface UsePostEditFormProps {
   post: Post

@@ -1,5 +1,7 @@
-import { Comment } from "../../../entities/comment/model"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../../shared/ui"
+import { Comment } from "@entities/comment/model"
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@shared/ui"
+
 import { CommentWriteForm } from "./CommentWriteForm"
 
 interface CommentWriteModalProps {

@@ -1,4 +1,4 @@
-import { Comment } from "../../../entities/comment/model/comment"
+import { Comment } from "@entities/comment/model/comment"
 
 export const updateCommentBody = (
   comments: Comment[],

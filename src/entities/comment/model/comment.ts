@@ -1,4 +1,4 @@
-import { User } from "../../user/@x/comment"
+import { User } from "@entities/user/@x/comment"
 
 export type Comment = {
   id: number

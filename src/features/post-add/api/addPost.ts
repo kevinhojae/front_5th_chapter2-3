@@ -1,5 +1,6 @@
-import { Post } from "../../../entities/post/model/post"
-import { PostWithAuthor } from "../../posts-view/api/adaptPostWithAuthor"
+import { PostWithAuthor } from "@features/posts-view/api/adaptPostWithAuthor"
+
+import { Post } from "@entities/post/model/post"
 
 type AddPostDTO = Pick<Post, "title" | "body" | "userId">
 

@@ -1,8 +1,10 @@
-import { fetchPostsByTag } from "../../../entities/post/api/fetchPostsByTag"
-import { fetchUsers } from "../../../entities/user/api/fetchUsers"
+import { fetchPostsByTag } from "@entities/post/api/fetchPostsByTag"
+import { fetchUsers } from "@entities/user/api/fetchUsers"
+
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
 import { adaptPostWithAuthor } from "./adaptPostWithAuthor"
 import { PostWithAuthor } from "./adaptPostWithAuthor"
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
 
 export const fetchPostsWithAuthorByTag = async (tag: string): Promise<PaginatedResponse<PostWithAuthor, "posts">> => {
   const data = await fetchPostsByTag(tag)

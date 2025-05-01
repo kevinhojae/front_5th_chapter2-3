@@ -1,10 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useCommentQuery } from "../../../entities/comment/model"
-import { addComment } from "../api/addComment"
-import { Comment } from "../../../entities/comment/model/comment"
+
+import { Comment } from "@entities/comment/model/comment"
+import { useCommentQuery } from "@entities/comment/model/useCommentQuery"
+
 import { updateComment } from "../api"
+import { addComment } from "../api/addComment"
 import { updateCommentBody } from "../lib/updateCommentBody"
 
 const formSchema = z.object({

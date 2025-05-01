@@ -1,15 +1,18 @@
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest"
+import { QueryClientProvider } from "@tanstack/react-query"
+import "@testing-library/jest-dom"
 import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { http, HttpResponse } from "msw"
+import { HttpResponse, http } from "msw"
 import { setupServer } from "msw/node"
 import { MemoryRouter } from "react-router-dom"
-import { PostsDashboardPage } from "../src/pages"
-import * as React from "react"
-import "@testing-library/jest-dom"
+import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest"
+
+import { queryClient } from "@app/lib/queryClient"
+
+import { PostsDashboardPage } from "@pages/PostsDashboardPage"
+
 import { TEST_POSTS, TEST_SEARCH_POST, TEST_USERS } from "./mockData"
-import { QueryClientProvider } from "@tanstack/react-query"
-import { queryClient } from "../src/app/lib/queryClient"
+
 // MSW 서버 설정
 const server = setupServer(
   http.get("/api/posts", () => {

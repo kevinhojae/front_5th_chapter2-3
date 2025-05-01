@@ -1,8 +1,11 @@
-import { Button, Input, Textarea } from "../../../shared/ui"
-import { Post } from "../../../entities/post/model/post"
-import { formSchema, usePostEditForm } from "../model/usePostEditForm"
 import { Controller } from "react-hook-form"
 import { z } from "zod"
+
+import { Post } from "@entities/post/model/post"
+
+import { Button, Input, Textarea } from "@shared/ui"
+
+import { formSchema, usePostEditForm } from "../model/usePostEditForm"
 
 interface PostEditFormProps {
   post: Post

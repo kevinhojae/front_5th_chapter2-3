@@ -1,7 +1,9 @@
 import { Controller } from "react-hook-form"
-import { Input, Textarea, Button } from "../../../shared/ui"
-import { formSchema, usePostAddForm } from "../model/usePostAddForm"
 import { z } from "zod"
+
+import { Button, Input, Textarea } from "@shared/ui"
+
+import { formSchema, usePostAddForm } from "../model/usePostAddForm"
 
 interface PostAddFormProps {
   closePostAddModal: () => void

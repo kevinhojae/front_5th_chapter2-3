@@ -1,5 +1,6 @@
 import { Plus } from "lucide-react"
-import { Button } from "../../../shared/ui"
+
+import { Button } from "@shared/ui"
 
 interface PostAddButtonProps {
   openPostAddModal: () => void

@@ -1,13 +1,15 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../shared/ui"
-import { PostTag } from "../../features/posts-view/ui/PostTag"
-import { HighlightedText } from "../../features/posts-view/ui/HighlightedText"
-import { useUserDetailModal } from "../../features/user-view/model/useUserDetailModal"
 import { ThumbsDown, ThumbsUp } from "lucide-react"
-import { usePostEditModal } from "../../features/post-edit"
-import { usePostDetailModal } from "../../features/post-detail"
-import { PostDeleteButton } from "../../features/post-delete"
-import { usePostFiltersParams } from "../../features/posts-view/model/usePostFilterParams"
-import { usePostsQuery } from "../../features/posts-view/model/usePostsQuery"
+
+import { PostDeleteButton } from "@features/post-delete"
+import { usePostDetailModal } from "@features/post-detail"
+import { usePostEditModal } from "@features/post-edit"
+import { usePostFiltersParams } from "@features/posts-view/model/usePostFilterParams"
+import { usePostsQuery } from "@features/posts-view/model/usePostsQuery"
+import { HighlightedText } from "@features/posts-view/ui/HighlightedText"
+import { PostTag } from "@features/posts-view/ui/PostTag"
+import { useUserDetailModal } from "@features/user-view/model/useUserDetailModal"
+
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@shared/ui"
 
 export function PostTable() {
   const { data: posts, isLoading } = usePostsQuery()

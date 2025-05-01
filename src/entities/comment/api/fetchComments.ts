@@ -1,4 +1,5 @@
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
 import { Comment } from "../model/comment"
 
 export const fetchComments = async (postId: number): Promise<PaginatedResponse<Comment, "comments">> => {

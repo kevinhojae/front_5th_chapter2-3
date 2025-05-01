@@ -1,8 +1,10 @@
 import { useCallback, useState } from "react"
-import { Comment } from "../../../entities/comment/model/comment"
-import { CommentWriteModal } from "../ui/CommentWriteModal"
+
+import { Comment } from "@entities/comment/model/comment"
+
 import { CommentAddButton } from "../ui/CommentAddButton"
 import { CommentEditButton } from "../ui/CommentEditButton"
+import { CommentWriteModal } from "../ui/CommentWriteModal"
 
 export const useCommentWriteModal = (postId: number) => {
   const [showCommentWriteModal, setShowCommentWriteModal] = useState(false)

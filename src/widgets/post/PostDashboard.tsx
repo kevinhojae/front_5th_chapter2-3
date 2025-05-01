@@ -1,10 +1,13 @@
-import { usePostAddModal } from "../../features/post-add"
-import { PostSearchForm } from "../../features/posts-view/ui/PostSearchForm"
-import { PostSortBy } from "../../features/posts-view/ui/PostSortBy"
-import { PostSortOrder } from "../../features/posts-view/ui/PostSortOrder"
-import { PostTagSelector } from "../../features/posts-view/ui/PostTagSelector"
-import { Card, CardHeader, CardTitle, CardContent } from "../../shared/ui"
-import { TablePaginator } from "../layout/TablePaginator"
+import { TablePaginator } from "@widgets/layout"
+
+import { usePostAddModal } from "@features/post-add"
+import { PostSearchForm } from "@features/posts-view/ui/PostSearchForm"
+import { PostSortBy } from "@features/posts-view/ui/PostSortBy"
+import { PostSortOrder } from "@features/posts-view/ui/PostSortOrder"
+import { PostTagSelector } from "@features/posts-view/ui/PostTagSelector"
+
+import { Card, CardContent, CardHeader, CardTitle } from "@shared/ui"
+
 import { PostTable } from "./PostTable"
 
 export function PostsDashboard() {

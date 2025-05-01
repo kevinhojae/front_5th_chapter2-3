@@ -1,7 +1,9 @@
-import { fetchPostsBySearch } from "../../../entities/post/api/fetchPostsBySearch"
-import { fetchUsers } from "../../../entities/user/api/fetchUsers"
-import { PaginatedResponse } from "../../../shared/lib/utility-types"
-import { adaptPostWithAuthor, PostWithAuthor } from "./adaptPostWithAuthor"
+import { fetchPostsBySearch } from "@entities/post/api/fetchPostsBySearch"
+import { fetchUsers } from "@entities/user/api/fetchUsers"
+
+import { PaginatedResponse } from "@shared/lib/utility-types"
+
+import { PostWithAuthor, adaptPostWithAuthor } from "./adaptPostWithAuthor"
 
 export const fetchPostsWithAutherBySearch = async (
   searchQuery: string,
